@@ -32,27 +32,8 @@ export const AuthProvider = ({ children, navigation }) => {
 
     const login = (userEmail, userPasswd) => {
         setLoading(true);
-        // let request = { 'userEmail': userEmail, 'userPasswd': userPasswd }
-        // console.log(request)
-        // fetch('http://192.168.0.155:9902/account/login', {
-        //     method: 'POST',
-        //     headers: {
-        //         Accept: 'application/json',
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(request),
-        // })
-        // .then(res => {        
-        //     console.log(res)   
-        //         let userInfo = res.data;
-        //         console.log('checking.....' , userInfo)
-        //         // setUserInfo(userInfo)
-        //         //  AsyncStorage.setItem('userInfo', JSON.stringify(userInfo))
-        //     }).catch(e => {
-        //         console.log('error ...', e);
-        //         setLoading(false)
-        //     })
-        axios.post('http://192.168.150.212:9902/account/login',
+        
+        axios.post('http://192.168.0.153:9902/account/login',
             {userEmail, userPasswd}            
         ).then(res => {           
             let userInfo = res.data;
@@ -61,7 +42,7 @@ export const AuthProvider = ({ children, navigation }) => {
              AsyncStorage.setItem('userInfo', JSON.stringify(userInfo))
              setLoading(false)
         }).catch(e => {
-            console.log(`login error ${e}`);
+            console.log(`login error ${e.res}`);
             setLoading(false)
         })
     }
@@ -69,24 +50,12 @@ export const AuthProvider = ({ children, navigation }) => {
     const logout = async () => {
         try {
           await AsyncStorage.removeItem('userInfo');
-          setUserInfo({})
-          
+          setUserInfo({})          
           useNavigate('Login')
         } catch (error) {
-          console.log(`Error removing item: ${error.message}`);
+          console.log(`Error removing item: ${error}`);
         }
       };
-
-    // const logout = async () => {
-    //     try {
-    //         setUserInfo(userInfo)
-    //       await AsyncStorage.removeItem('userInfo', JSON.stringify(userInfo));
-    //       console.log('Item removed successfully');
-    //       useNavigate('Login')
-    //     } catch (error) {
-    //       console.log(`Error removing item: ${error.message}`);
-    //     }
-    //   };
 
     // const logout = () => {
     //     setLoading(true);

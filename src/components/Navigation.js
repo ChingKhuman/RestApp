@@ -1,12 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
  import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useContext } from "react";
-import Login from "../../Components/login";
 import { AuthContext } from '../context/AuthContext';
-import HomeScreen from "../HomeScreen";
 import LoginScreen from "../LoginScreen";
 import RegisterScreen from "../RegisterScreen";
-import SplashScreen from '../SplashScreen';
+import HomeScreen from './HomeScreen';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -18,11 +17,16 @@ const Navigation = () => {
        <NavigationContainer>
         <Stack.Navigator>
             {userInfo.data? (
-                 <Stack.Screen name='Home' component={HomeScreen}/>
-            ): (
+                 <>
+                 <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerShown: false}}/>
+                 
+                 </>               
+            )  
+            : (
                 <>
                 <Stack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
                            <Stack.Screen name='Register' component={RegisterScreen}/>
+                           
                 </>
             )}
             {/* {splashLoading ? (
@@ -30,7 +34,7 @@ const Navigation = () => {
                 options={{headerShown: false}}/>
             ):
             userInfo.accessToken ? (
-                <Stack.Screen name='Home' component={HomeScreen}/>
+                <Stack.Screen name='Home' component={HomeScreen} />
                            ): (
                                <>
                                
