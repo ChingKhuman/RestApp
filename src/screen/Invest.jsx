@@ -1,134 +1,42 @@
-
-
-import React from 'react';
-import {StyleSheet} from 'react-native';
+import React, { useContext,useState } from 'react';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import WalletScreen from '../WalletScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Logout from '../screen/Logout';
+import Logout from './Logout';
 import Dashboard from './Dashboard';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Button, Text } from 'react-native-paper';
+import { AuthContext } from '../context/AuthContext';
+import CustomSidebarMenu from '../components/CustomSidebarMenu';
+import InvoiceMangement from './InvoiceManagement';
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Transaction from './Transaction';
+import Notification from './Notification';
+import DefaultScreen from './DefaultScreen';
 
 
 
 
-
-
-const HomeScreen = () => {
+const Invest = ({navigation}) => {
 
   const Drawer = createDrawerNavigator();
+  const Stack = createNativeStackNavigator();
+  const [id, setId] = useState({})
+  
+
 
   return (
-
-      <Drawer.Navigator initialRouteName="Dash">
-        {/* <Drawer.Screen name='Dash' component={Dashboard}/> */}
-        <Drawer.Screen name="Dashboard" component={Dashboard} />
-        <Drawer.Screen name="Wallet" component={WalletScreen} />
-        <Drawer.Screen name="Logout" component={Logout}  />
-
-        
-      </Drawer.Navigator>
+    <> 
+   
+  
+     <View>
+     
+     </View>
+      </>
      );
     };
     
-
-{/* <ScrollView>
-<Button title='Wallet' onPress={()=> navigation.navigate('Wallet')}/>
-<Button title='Funding' onPress={()=> navigation.navigate('Funding')}/>
-<View style={{paddingHorizontal: 10}}>
-<Text style={{color: 'black', fontSize:25, }}> Dashboard</Text>
-<View style={{flexDirection: 'row'}}>
-<Text style={{color: 'orange', fontSize: 15, paddingHorizontal: 8}}>Home/ </Text>
-<Text>Dashboard</Text>
-
-</View>
-</View>
-
-    <View style={styles.main}>
-      <View style={{margin: 10, paddingTop: 30}}>
-      <View style={{borderWidth: 1, borderRadius: 2, borderColor: 'grey'}}>
-<Text> Yield</Text>
-
-        </View> 
-        <View style={{borderWidth: 1, borderRadius: 2, borderColor: 'grey', height: 50, alignItems: 'center'}}>
-          <Text style={{color: 'black', marginVertical: 8}}> Total Yield: </Text>
-        </View>
- 
-        </View>
-    <View style={{alignItems: 'center'}}>
-   
-   <View style={{borderWidth: 1, borderColor: 'grey'}}>
-    <Text style={{padding: 10}}>Offer Counts</Text>
-    <View
-           style={{
-    borderBottomColor: 'black',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  }}
-/>
-   <View >
-   
-    <Pie 
-            radius={80}
-            sections={[
-              {
-                percentage: 10,
-                color: '#C70039',
-              },
-              {
-                percentage: 20,
-                color: '#44CD40',
-              },
-              {
-                percentage: 30,
-                color: '#404FCD',
-              },
-              {
-                percentage: 40,
-                color: '#EBD22F',
-              },
-            ]}
-            strokeCap={'butt'}
-            innerRadius={40}
-          />
-    </View>
-   </View>
-          <View style={{borderWidth: 1, borderColor: 'grey'}}>
-          <Text style={{padding: 10}}>Offer Amounts</Text>
-          <View
-  style={{
-    borderBottomColor: 'black',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  }}
-/>
-          <Pie
-            radius={80}
-            sections={[
-              {
-                percentage: 10,
-                color: '#C70039',
-              },
-              {
-                percentage: 20,
-                color: '#44CD40',
-              },
-              {
-                percentage: 30,
-                color: '#404FCD',
-              },
-              {
-                percentage: 40,
-                color: '#EBD22F',
-              },
-            ]}
-            strokeCap={'butt'}
-            innerRadius={40}
-          />
-          </View>
- </View>
- <View style={styles.sectionWrapper}>
- 
-</View>
-   
-    </View>
-</ScrollView> */}
 
 
   
@@ -173,7 +81,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HomeScreen;
+export default Invest;
 
 
 

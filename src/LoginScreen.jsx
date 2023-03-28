@@ -39,7 +39,8 @@ const LoginScreen = ({navigation}) => {
             <TextInput style={styles.input} value={userPasswd}
              placeholder='Enter password'
              onChangeText={text=> setUserPasswd(text)}
-             secureTextEntry/>
+            //  secureTextEntry
+             />
        </View>
        <TouchableOpacity>
        <Button style={styles.btn} title=' CLICK LOGIN'

@@ -12,6 +12,8 @@ export const AuthProvider = ({ children, navigation }) => {
     const [loading, setLoading] = useState(false);
     const [userInfo, setUserInfo] = useState({});
     const [splashLoading, setSplashLoading] = useState(false)
+    const [pieData, setPieData] = useState({})
+   
     
 
     // const register = (name, mobile, email, password) => {
@@ -33,11 +35,11 @@ export const AuthProvider = ({ children, navigation }) => {
     const login = (userEmail, userPasswd) => {
         setLoading(true);
         
-        axios.post('http://192.168.0.153:9902/account/login',
+        axios.post(`${BASE_URL}/account/login` ,
             {userEmail, userPasswd}            
-        ).then(res => {           
-            let userInfo = res.data;
-           
+        ).then(res => {
+            let userInfo = res.data;  
+            // console.log("Checkdata...", userInfo)          
             setUserInfo(userInfo)
              AsyncStorage.setItem('userInfo', JSON.stringify(userInfo))
              setLoading(false)
@@ -56,6 +58,8 @@ export const AuthProvider = ({ children, navigation }) => {
           console.log(`Error removing item: ${error}`);
         }
       };
+
+    
 
     // const logout = () => {
     //     setLoading(true);
@@ -78,7 +82,7 @@ export const AuthProvider = ({ children, navigation }) => {
             setSplashLoading(true)
             let userInfo = await AsyncStorage.getItem('userInfo');
             userInfo = JSON.parse(userInfo);
-            console.log("CheckRemoveOrNot...", userInfo)
+            
 
             if (userInfo) {
                 setUserInfo(userInfo)
@@ -95,9 +99,40 @@ export const AuthProvider = ({ children, navigation }) => {
         isloggedIn()
     }, []);
 
+    
+    const token = userInfo.data?.accessToken
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", token);
+  
+    var raw = "";
+   
+    
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+   
+
+    const getList =() => {
+       fetch(`${BASE_URL}/dashboard/dashboardsummary`,
+        requestOptions        
+    ).then(response => response.json())
+    .then(result => {  
+        console.log(result)
+              let pieData = result.data;
+         setPieData(pieData)         
+        
+    }).catch(e => {
+        console.log(`login error ${e.res}`);
+    
+    })
+    }
+
     return (
 
-        <AuthContext.Provider value={{ loading, userInfo, splashLoading, login,logout }}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ loading, userInfo, splashLoading,getList, login,logout }}>{children}</AuthContext.Provider>
     )
 
 }

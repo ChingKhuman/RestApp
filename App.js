@@ -7,6 +7,7 @@ import {AuthProvider} from './src/context/AuthContext';
 
 
 
+
 function App() {
 
  
@@ -16,8 +17,7 @@ function App() {
    <StatusBar backgroundColor="#06bcee"/>
  <Navigation/>
   </AuthProvider>
-  
-   
+
    )
 }
 
