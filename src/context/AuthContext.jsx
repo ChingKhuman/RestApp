@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Navigate } from "react-router-dom";
-import { BASE_URL } from "../config";
+import { BASE_URL } from "../Config";
 
 
 export const AuthContext = createContext();
@@ -99,40 +99,12 @@ export const AuthProvider = ({ children, navigation }) => {
         isloggedIn()
     }, []);
 
-    
-    const token = userInfo.data?.accessToken
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", token);
-  
-    var raw = "";
-   
-    
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
    
 
-    const getList =() => {
-       fetch(`${BASE_URL}/dashboard/dashboardsummary`,
-        requestOptions        
-    ).then(response => response.json())
-    .then(result => {  
-        console.log(result)
-              let pieData = result.data;
-         setPieData(pieData)         
-        
-    }).catch(e => {
-        console.log(`login error ${e.res}`);
-    
-    })
-    }
 
     return (
 
-        <AuthContext.Provider value={{ loading, userInfo, splashLoading,getList, login,logout }}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ loading, userInfo, splashLoading, login,logout }}>{children}</AuthContext.Provider>
     )
 
 }

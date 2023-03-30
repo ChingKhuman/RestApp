@@ -8,7 +8,9 @@ export const COLORS = {
     grey: '#585656',
     lightGrey: '#DCDADD',
     white: '#FFFFF',
-    title: '#482755'
+    title: '#482755',
+    green: '#6FB91C',
+    black: '#070707',
 }
 
 export const SIZES ={
@@ -26,6 +28,7 @@ export const SIZES ={
 export const FONTWIEGHT = {
     bold: 'bold',
     normal:'normal',
+    weight100: '100',
     weight500: '500',
     weight700: '700'
 }

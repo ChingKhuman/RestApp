@@ -1,26 +1,19 @@
-import React, { useContext } from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {StyleSheet} from 'react-native';
 import WalletScreen from '../WalletScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Logout from './Logout';
 import Dashboard from './Dashboard';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Button, Text } from 'react-native-paper';
-import { AuthContext } from '../context/AuthContext';
 import CustomSidebarMenu from '../components/CustomSidebarMenu';
 import InvoiceMangement from './InvoiceManagement';
 import Icon from 'react-native-vector-icons/FontAwesome'
-import Transaction from './Transaction';
 import Notification from './Notification';
-import DefaultScreen from './DefaultScreen';
 import Help from './Help';
 import Funding from '../Funding';
 import Settlement from './Settlement';
 import Tds from './Tds';
-
-
-
+import Profile from './Profile';
+import { AiFillDatabase } from "react-icons/ai";
 
 
 
@@ -40,34 +33,20 @@ const HomeScreen = ({navigation}) => {
       itemStyle: {marginVertical: 5},
     }}
     drawerContent={props => <CustomSidebarMenu {...props} />}>
-
-               
-  
-    
-    
-      {/* <Text>
-        Home screen
-      </Text>
-      <TouchableOpacity  >
-       <Text style={{color: 'blue'}} onPress={()=> navigation.navigate('Screen')}>Register</Text>
-     </TouchableOpacity> */}
             
       
      <Drawer.Screen name="Dashboard" component={Dashboard} 
       options={{
         drawerIcon: ({focused, size}) => (
-          <Icon name="home" 
-          size={size}
-         
-           />
-        )
+          <Icon name="home" size={30} color={focused ? '#7cc': '#CCC'} />
+        ),
+       
       }} /> 
      <Drawer.Screen name="Invoice Management" component={InvoiceMangement}  options={{
+      
       drawerIcon: ({focused, size}) => (
-        <Icon name="bell" 
-        size={size}          
-         />
-      )
+        <Icon name="home" size={30} color={focused ? '#7cc': '#CCC'} />
+      ),
     }} /> 
 
     <Drawer.Screen name="Wallet Management" component={WalletScreen}  
@@ -115,6 +94,15 @@ const HomeScreen = ({navigation}) => {
       )
     }}/>
      <Drawer.Screen name="Help" component={Help} 
+      options={{
+        drawerIcon: ({focused, size}) => (
+          <Icon name="home" 
+          size={size}
+         
+           />
+        )
+      }} />
+       <Drawer.Screen name="Profile" component={Profile} 
       options={{
         drawerIcon: ({focused, size}) => (
           <Icon name="home" 
@@ -188,8 +176,6 @@ export default HomeScreen;
 
 
 
-
-// import React, { useContext, useEffect, useState } from "react";
 // import Spinner from "react-native-loading-spinner-overlay/lib";
 // import { Button, StyleSheet,Modal, Text,Pressable, TouchableOpacity, View } from "react-native"
 // import { AuthContext } from "./context/AuthContext";

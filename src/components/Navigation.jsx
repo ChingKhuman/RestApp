@@ -1,16 +1,15 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
- import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useContext } from "react";
 import { AuthContext } from '../context/AuthContext';
 import Funding from '../Funding';
 import LoginScreen from "../LoginScreen";
 import RegisterScreen from "../RegisterScreen";
-import Dashboard from '../screen/Dashboard';
 import DefaultScreen from '../screen/DefaultScreen';
-import Home from '../screen/Invest';
+import Faq from '../screen/Faq';
+import Glossary from '../screen/Glossary';
 import HomeScreen from '../screen/HomeScreen';
-import Notification from '../screen/Notification';
 import WalletScreen from '../WalletScreen';
 
 
@@ -26,19 +25,21 @@ const Navigation = () => {
      const Tab = createBottomTabNavigator();
     return (
        <NavigationContainer>
-        <Tab.Navigator>
-        {/* <>                 
-                 <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerShown: false}}/> 
-                 <Stack.Screen name='Screen' component={DefaultScreen} options={{headerShown: false}}/>                
-                 </> */}
+      
+       
+        <Stack.Navigator>
+         
         { userInfo.data? (
-                 <>   
+              
+        <>
+                  
                                
-                 <Tab.Screen name='HomeScreen' component={HomeScreen} options={{headerShown: false}}/> 
-                 <Tab.Screen name='Screen' component={DefaultScreen} options={{headerShown: false}}/> 
-                 <Tab.Screen name='Funding' component={Funding} options={{headerShown: false}}/> 
-                 <Tab.Screen name='Wallet' component={WalletScreen} options={{headerShown: false}}/> 
-                 </>    
+                 <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerShown: false}}/> 
+                 <Stack.Screen name='Screen' component={DefaultScreen} options={{headerShown: false}}/> 
+                 <Stack.Screen name='Funding' component={Funding} options={{headerShown: false}}/> 
+                 <Stack.Screen name='Wallet' component={WalletScreen} options={{headerShown: false}}/> 
+                
+                 </>  
                  
         ):(
              <>
@@ -83,7 +84,7 @@ const Navigation = () => {
                            )} */}
 
 
-   </Tab.Navigator>
+   </Stack.Navigator>
         </NavigationContainer>
     )}
 
