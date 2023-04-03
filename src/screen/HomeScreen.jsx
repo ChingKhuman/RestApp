@@ -45,7 +45,7 @@ const HomeScreen = ({navigation}) => {
      <Drawer.Screen name="Invoice Management" component={InvoiceMangement}  options={{
       
       drawerIcon: ({focused, size}) => (
-        <Icon name="home" size={30} color={focused ? '#7cc': '#CCC'} />
+        <Icon name="archive" size={30} color={focused ? '#7cc': '#CCC'} />
       ),
     }} /> 
 

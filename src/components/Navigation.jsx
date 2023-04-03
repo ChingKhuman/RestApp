@@ -29,7 +29,7 @@ const Navigation = () => {
        
         <Stack.Navigator>
          
-        { userInfo.data? (
+        { userInfo? (
               
         <>
                   
