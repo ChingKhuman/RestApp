@@ -21,7 +21,7 @@ return (
     <TouchableOpacity onPress={() => navigation.navigate('Glossary')}>
       <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
     <Text style={{fontSize:20, }}>Glossary</Text>
-      <Icon name="rocket" size={30} color="#900" /> 
+    
     </View></TouchableOpacity>
     <TouchableOpacity onPress={() => navigation.navigate('Faq')}><Text style={{fontSize:20, }}>FAQs</Text></TouchableOpacity>
     </View>

@@ -1,100 +1,72 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, } from 'react';
 import {StyleSheet,Button, Text,View, ScrollView, Dimensions} from
  'react-native';
- import {  PieChart} from 'react-native-chart-kit'
-import { BASE_URL } from '../Config';
+ import {  PieChart} from 'react-native-chart-kit';
+import { BASE_URL } from '../constants/Config';
 import { AuthContext } from '../context/AuthContext';
+import Pie from 'react-native-pie'
 
 
 const Dashboard = () => {
 
-  const [pieData, setPieData ] = useState([])
-  const [count, setCount] = useState([])
+  // const [pieData, setPieData ] = useState();
+  // const [count, setCount] = useState([]);
 
  
 
-  const screenWidth = Dimensions.get('window').width
+  const screenWidth = Dimensions.get('window').width;
 
-  const {loading, userInfo} = useContext(AuthContext);
-  // console.log(userInfo)
-  const token = userInfo.data?.accessToken
-  console.log('token....', token)
-
-
-
-
-var myHeaders = new Headers();
-myHeaders.append("Authorization", token);
-
-var raw = "";
-
-var requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
-};
+  // const {loading, userInfo} = useContext(AuthContext);
+  // // console.log(userInfo)
+  // const token = userInfo.data?.accessToken;
+  // console.log('token....', token);
 
 
 
-// const pie = () => {
-//   fetch("http://192.168.0.154:9902/dashboard/dashboardsummary",requestOptions)
-//   .then(response => response.json())
-//   .then((result) => {  
-//    let pie= result.data?.amount  
-//   //  console.log('pie.....', pie)  
-//     setPieData(pie)  })
-//       .catch(error => {
-//         console.log(error)
-//       }) 
-// }
-// useEffect(()=> {
-// pie()
 
-// }, [])
+// var myHeaders = new Headers();
+// myHeaders.append("Authorization", token);
 
-const getData= () => {
-  fetch(`${BASE_URL}/dashboard/dashboardsummary`,requestOptions)
-  .then(function(response){
-    return response.json();
-  }).
-  then(function(myJson) {
-    let cont = myJson.data.count;
-    setCount(cont)
-    }).catch(function(error){
-      console.log(error)
-    })   
+// var raw = "";
 
-  }
-    useEffect(()=>{
-      getData()
-    },[])
+// var requestOptions = {
+//   method: 'GET',
+//   headers: myHeaders,
+//   body: raw,
+//   redirect: 'follow'
+// };
 
 
-    useEffect(() => {
-      // declare the data fetching function
-      const fetchData = async () => {
-        const data = await fetch('http://192.168.0.154:9902/dashboard/dashboardsummary');
-      }
+// const getData= () => {
+//   fetch(`${BASE_URL}/dashboard/dashboardsummary`,requestOptions)
+//   .then(function(response){
+//     return response.json();
+//   }).
+//   then(function(myJson) {
+//     let cont = myJson?.data.count;
+//     // console.log('check the data...', cont)
+//     setCount(cont);
+  
+//     }).catch(function(error){
+//       console.log(error)
+//     })   
+
+//   }
+//     useEffect(()=>{
+//       getData()
+//     },[]);
+
+//  const chartConfig = {
+//     backgroundGradientFrom: "#1E2923",
+//     backgroundGradientFromOpacity: 0,
+//     backgroundGradientTo: "#08130D",
+//     backgroundGradientToOpacity: 0.5,
+//     color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+//     strokeWidth: 2, // optional, default 3
+//     barPercentage: 0.5,
+//     useShadowColorFromDataset: false // optional
     
-      // call the function
-      fetchData()
-        // make sure to catch any error
-        .catch(console.error);
-    }, [])
-  
-  
-  
-
-
-  
-  const chartConfig = {
-    backgroundGradientFrom: '#E12B04',
-    backgroundGradientTo: 'blue',
-    color: (opacity = 1) => `rgba(225, 43, 4 , ${opacity})`,
-    strokeWidth: 2 // optional, default 3
-    
-  }
+//   }
 
 
   const data = [
@@ -104,13 +76,6 @@ const getData= () => {
     { name: 'New York', population: 8538000, color: '#ffffff', legendFontColor: '#7F7F7F', legendFontSize: 15 },
     { name: 'Moscow', population: 10920000, color: 'rgb(0, 0, 255)', legendFontColor: '#7F7F7F', legendFontSize: 15 }
   ]
-  // const data = [
-  //   { name: 'Seoul', population: 20000000, color: 'rgba(131, 167, 234, 1)', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-  //   { name: 'Toronto', population: 2800000, color: '#F00', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-  //   { name: 'Beijing', population: 527612, color: 'red', },
-  //   { name: 'New York', population: 8538000, color: '#ffffff', },
-  //   { name: 'Moscow', population: 10920000, color: 'rgb(0, 0, 255)', }
-  // ]
     return (
   <ScrollView>
       <>
@@ -141,7 +106,7 @@ const getData= () => {
   <View style={{borderWidth: 1, borderColor: 'grey'}}>
     <Text style={{padding: 10, textAlign: 'center'}}>Offer Amount Details</Text>
    
-<PieChart
+{/* <PieChart
   data={data}
   width={screenWidth}
   height={220}
@@ -150,7 +115,7 @@ const getData= () => {
   backgroundColor="transparent"
   paddingLeft="15"
   
-/>
+/> */}
 
 
 </View>
@@ -159,15 +124,15 @@ const getData= () => {
     <Text style={{padding: 10, textAlign:'center'}}>Offer Counts Details</Text>
 
    </View>
-  {count.map((item, index)=> 
+  {/* {count.map((item, index)=> 
   <View style={{justifyContent:'space-between', display:'flex'}} key={index}>
 <Text style={{textAlign:'center'}}>{item.name}</Text>
   </View>
- ) }
+ ) } */}
 
-<PieChart
+{/* <PieChart
   data={count}
-  color="#E12B04"
+  color="red"
   width={screenWidth}
   height={220}
   chartConfig={chartConfig}
@@ -175,7 +140,7 @@ const getData= () => {
   backgroundColor="transparent"
   paddingLeft="15"
   absolute
-/>
+/> */}
 
 <View style={{borderWidth: 1, borderColor: 'grey'}}>
     <Text style={{padding: 10, textAlign: 'center'}}>Offer Amount Details</Text>
@@ -192,6 +157,7 @@ const getData= () => {
 /> */}
 
 
+{/* <Pie/> */}
 </View>
 
 </View>

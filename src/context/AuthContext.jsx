@@ -2,8 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { Navigate } from "react-router-dom";
-import { BASE_URL } from "../Config";
+import { BASE_URL } from "../constants/Config";
 
 
 export const AuthContext = createContext();
@@ -11,8 +10,8 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children, navigation }) => {
     const [loading, setLoading] = useState(false);
     const [userInfo, setUserInfo] = useState({});
+    const [addInfo, setAddInfo] = useState()
     const [splashLoading, setSplashLoading] = useState(false)
-    const [pieData, setPieData] = useState({})
    
     
 
@@ -59,24 +58,6 @@ export const AuthProvider = ({ children, navigation }) => {
         }
       };
 
-    
-
-    // const logout = () => {
-    //     setLoading(true);
-    //     axios.post(`${BASE_URL}/logout`,
-    //         {}, {
-    //         headers: { Authorization: `Bearer ${userInfo.access_token}` },
-    //     },).then(res => {
-    //         console.log(res.data)
-    //         AsyncStorage.removeItem("userInfo");
-    //         setUserInfo({})
-    //         setLoading(false)
-    //     }).catch(e => {
-    //         console.log(`logout error ${e}`);
-    //         setLoading(false)
-    //     })
-    // }
-
     const isloggedIn = async () => {
         try {
             setSplashLoading(true)
@@ -99,12 +80,28 @@ export const AuthProvider = ({ children, navigation }) => {
         isloggedIn()
     }, []);
 
+    const Invoice = (add) => {
+        setLoading(true);
+        
+        axios.post(`${BASE_URL}/invoicediscounting/addfunding` ,
+            {add}            
+        ).then(res => {
+            let addInfo = res.data;  
+             console.log("Checkdata...", addInfo)          
+            // setAddInfo(addInfo)
+            //  setLoading(false)
+        }).catch(e => {
+            console.log(`login error ${e.res}`);
+            setLoading(false)
+        })
+    }
+
    
 
 
     return (
 
-        <AuthContext.Provider value={{ loading, userInfo, splashLoading, login,logout }}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ loading, userInfo, splashLoading, login,logout, Invoice }}>{children}</AuthContext.Provider>
     )
 
 }

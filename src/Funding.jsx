@@ -1,15 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { BASE_URL } from './Config';
+import { BASE_URL } from './constants/Config';
 import { COLORS, FONTWIEGHT } from './constants/theme';
 import { AuthContext } from './context/AuthContext';
 
 const Funding = () => {
 
-    const [fund, setFund] = useState([])
+    const [fund, setFund] = useState([]);
     const { loading, userInfo } = useContext(AuthContext);
     // console.log(userInfo)
-    const token = userInfo.data?.accessToken
+    const token = userInfo.data?.accessToken;
     var myHeaders = new Headers();
     myHeaders.append("Authorization", token);
 
@@ -29,10 +29,10 @@ const Funding = () => {
             }).
             then(function (myJson) {
                 let cont = myJson.data;
-                // console.log('fund check....', cont)
+                 console.log('fund check....', cont);
                 setFund(cont)
             }).catch(function (error) {
-                console.log(error)
+                console.log(error);
             })
 
     }
@@ -51,7 +51,7 @@ const Funding = () => {
                 </View>
                 
                    
-                    {fund.map((item, index) =>
+                    {/* {fund.map((item, index) =>
                    <View style={{ paddingTop: 50, margin: 20, borderRadius: 5 }}>
                      <View style={{
                         alignItems: 'flex-start', height: 130,
@@ -94,7 +94,7 @@ const Funding = () => {
                         </View>
                         </View>
                        
-                      )} 
+                      )}  */}
               
             </View>
         </ScrollView>

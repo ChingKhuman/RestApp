@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as React from 'react'
 import { View, Text, Button, TouchableOpacity, StyleSheet } from 'react-native';
 import { Card } from 'react-native-paper';
-import { BASE_URL } from './Config';
+import { BASE_URL } from './constants/Config';
 import { COLORS, FONTWIEGHT, SIZES } from './constants/theme';
 import { AuthContext } from './context/AuthContext';
 
@@ -34,7 +34,7 @@ const WalletScreen = () => {
             }).
             then(function (myJson) {
                   let cont = myJson.data.finvridhhiWallet;
-              
+              console.log('fungcheck', cont)
                   setWallet(cont)
             }).catch(function (error) {
                 console.log(error)

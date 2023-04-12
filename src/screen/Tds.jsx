@@ -1,6 +1,6 @@
 import React, { useState,useContext, useEffect } from 'react'
 import { View, Text, Modal, StyleSheet, Pressable } from 'react-native';
-import { BASE_URL } from '../Config';
+import { BASE_URL } from '../constants/Config';
 import { SIZES } from '../constants/theme';
 import { AuthContext } from '../context/AuthContext';
 

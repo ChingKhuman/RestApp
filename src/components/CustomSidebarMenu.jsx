@@ -10,7 +10,7 @@ import {
   Pressable,
   Button,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'
+
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -19,6 +19,8 @@ import {
 import { AuthContext } from '../context/AuthContext';
 import { COLORS, SIZES } from '../constants/theme';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/FontAwesome'
+import { List } from 'react-native-paper';
 
 
 
@@ -37,12 +39,14 @@ const CustomSidebarMenu = (props) => {
             <Image style={styles.sideMenuProfileIcon} source={require('../../assets/platform.png')} />
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
+    
+
        
           <DrawerItem
            options={{
             drawerIcon: ({focused, size}) => (
-              <Icon name="home" 
-              size={size}
+              <Icon name="rocket" 
+              size={25}
              
                />
             )

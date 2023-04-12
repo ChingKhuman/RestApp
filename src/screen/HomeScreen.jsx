@@ -13,7 +13,8 @@ import Funding from '../Funding';
 import Settlement from './Settlement';
 import Tds from './Tds';
 import Profile from './Profile';
-import { AiFillDatabase } from "react-icons/ai";
+import { COLORS } from '../constants/theme';
+import { List } from 'react-native-paper';
 
 
 
@@ -23,96 +24,132 @@ const HomeScreen = ({navigation}) => {
 
   const Drawer = createDrawerNavigator();
   const Stack = createNativeStackNavigator();
+
   
 
   return (
     <> 
     <Drawer.Navigator
-    screenOptions={{
-      activeTintColor: '#e91e63',
-      itemStyle: {marginVertical: 5},
+     drawerContentOptions={{
+     
+      labelStyle:{
+        marginLeft:5,
+        fontsize:20
+      }
     }}
-    drawerContent={props => <CustomSidebarMenu {...props} />}>
+    screenOptions={{
+      headerShown:'true',
+      drawerActiveTintColor:"grey",
+      drawerInactiveTintColor:"black",
+      inactiveBackgroundColor: 'transparent',
+      activeTintColor: 'red',
+      labelStyle: {
+        fontSize: 20,
+        marginLeft: 10,
+      },
+      itemStyle: {marginVertical: 5},
+      
+      headerStyle: {
+        backgroundColor: 'green', //Set Header color
+      },
+      headerTintColor: '#fff', //Set Header text color
+      headerTitleStyle: {
+        fontWeight: 'bold', //Set Header text style
+      },
+    }}
+    drawerContent={props => <CustomSidebarMenu {...props}
+    labelStyle={{fontFamily: 'sans-serif', fontsize:10}} />}>
             
       
-     <Drawer.Screen name="Dashboard" component={Dashboard} 
+     <Drawer.Screen name="Dashboard" 
+    //  options={{drawerLabel: 'Second page Option', title: 'Second Stack'}}
+     component={Dashboard} 
       options={{
-        drawerIcon: ({focused, size}) => (
-          <Icon name="home" size={30} color={focused ? '#7cc': '#CCC'} />
+        labelStyle: {
+          fontSize: 20,
+        },
+        drawerLabel: 'Dashboard',title: 'Dashboard',
+        drawerIcon: () => (
+          
+          <Icon name="home" size={25} color= 'black'/>
         ),
        
       }} /> 
-     <Drawer.Screen name="Invoice Management" component={InvoiceMangement}  options={{
-      
-      drawerIcon: ({focused, size}) => (
-        <Icon name="archive" size={30} color={focused ? '#7cc': '#CCC'} />
+     <Drawer.Screen name="Invoice Management" component={InvoiceMangement}  
+     options={{      
+      drawerIcon: () => (
+        <Icon name="archive" size={25} color="black" />
       ),
     }} /> 
 
     <Drawer.Screen name="Wallet Management" component={WalletScreen}  
     options={{
-      drawerIcon: ({focused, size}) => (
-        <Icon name="bell" 
-        size={size}
-        color='blue'
+      drawerIcon: () => (
+        <Icon name="book" 
+        size={25}
+        color="black"
          />
       )
     }}/>
      <Drawer.Screen name="My Funding" component={Funding}  
     options={{
-      drawerIcon: ({focused, size}) => (
-        <Icon name="bell" 
-        size={size}
-        color='blue'
+      drawerIcon: () => (
+        <Icon name="calendar" 
+        size={25}
+        color='black'
          />
       )
     }}/>
 
 <Drawer.Screen name="My Settlement" component={Settlement}  options={{
-      drawerIcon: ({focused, size}) => (
-        <Icon name="bell" 
-        size={size}          
+      drawerIcon: () => (
+        <Icon name="book" 
+        size={25}   
+        color='black'       
          />
       )
     }} />
 
 <Drawer.Screen name="My TDS History" component={Tds}  options={{
-      drawerIcon: ({focused, size}) => (
-        <Icon name="bell" 
-        size={size}          
+      drawerIcon: () => (
+        <Icon name="archive" 
+        size={25}  
+        color='black'        
          />
       )
     }} />
     
     <Drawer.Screen name="Notification" component={Notification}  
     options={{
-      drawerIcon: ({focused, size}) => (
+      drawerIcon: () => (
         <Icon name="bell" 
-        size={size}
-        color='blue'
+        size={25}
+        color='black'
          />                
       )
     }}/>
      <Drawer.Screen name="Help" component={Help} 
       options={{
-        drawerIcon: ({focused, size}) => (
-          <Icon name="home" 
-          size={size}
-         
-           />
+        drawerIcon: () => (
+          <><Icon name="rocket"
+            size={25}
+            color='black' />
+         </>
         )
-      }} />
+      
+      }}
+      />
+      
        <Drawer.Screen name="Profile" component={Profile} 
       options={{
-        drawerIcon: ({focused, size}) => (
-          <Icon name="home" 
-          size={size}
+        drawerIcon: () => (
+          <Icon name="camera" 
+          size={25}
+          color={COLORS.black}
          
            />
         )
-      }} />
-    
-   
+      }} />   
      </Drawer.Navigator>
       </>
      );

@@ -18,8 +18,8 @@ import { AuthContext } from "./context/AuthContext";
 
 const LoginScreen = ({navigation}) => {
 
-  const [userEmail, setUserEmail] = useState(null);
-    const [userPasswd, setUserPasswd] = useState(null);
+  const [userEmail, setUserEmail] = useState('');
+    const [userPasswd, setUserPasswd] = useState('');
     const {loading, login} = useContext(AuthContext)
     
     return (
@@ -47,11 +47,13 @@ const LoginScreen = ({navigation}) => {
        onPress={() => {login(
         userEmail,userPasswd)}}/>
        </TouchableOpacity>
-       
+      
       </View>
       <View style={styles.containerRes}>
-        <Text>Didn't have an account.  </Text>
-        <TouchableOpacity  >
+      <Text style={{color: 'black'}}>Forgot Password </Text>
+      <TouchableOpacity  >
+        
+       
                 <Text style={{color: 'blue'}} onPress={()=> navigation.navigate('Register')}>Register</Text>
                 </TouchableOpacity>
        
@@ -81,6 +83,7 @@ const styles = StyleSheet.create({
       margin: 12,
       borderWidth: 1,
       padding: 10,
+      color: 'black',
     },
     LogContainer:{
       paddingVertical: 50

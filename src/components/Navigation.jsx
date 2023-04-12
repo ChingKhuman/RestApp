@@ -6,7 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 import Funding from '../Funding';
 import LoginScreen from "../LoginScreen";
 import RegisterScreen from "../RegisterScreen";
-import DefaultScreen from '../screen/DefaultScreen';
+
 import Faq from '../screen/Faq';
 import Glossary from '../screen/Glossary';
 import HomeScreen from '../screen/HomeScreen';
@@ -25,18 +25,17 @@ const Navigation = () => {
      const Tab = createBottomTabNavigator();
     return (
        <NavigationContainer>
-      
+          
        
         <Stack.Navigator>
          
-        { userInfo? (
+        { userInfo.data? (
               
         <>
                   
                                
                  <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerShown: false}}/> 
-                 <Stack.Screen name='Screen' component={DefaultScreen} options={{headerShown: false}}/> 
-                 <Stack.Screen name='Funding' component={Funding} options={{headerShown: false}}/> 
+                    <Stack.Screen name='Funding' component={Funding} options={{headerShown: false}}/> 
                  <Stack.Screen name='Wallet' component={WalletScreen} options={{headerShown: false}}/> 
                 
                  </>  
