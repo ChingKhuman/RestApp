@@ -4,46 +4,48 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { BASE_URL } from '../constants/Config';
 import { COLORS, FONTWIEGHT, SIZES } from '../constants/theme';
 import { AuthContext } from '../context/AuthContext';
+import * as Progress from  'react-native-progress'
 
 const InvoiceMangement = () => {
 
 
-    // const [invoice, setInvoice] = React.useState([])
-    //  const [modal, setModal] = React.useState(false)
-    //  const [add, setAdd] = React.useState(null)
-    // const { loading, userInfo, Invoice } = React.useContext(AuthContext);
-    // // console.log(userInfo)
-    // const token = userInfo.data?.accessToken
-    // var myHeaders = new Headers();
-    // myHeaders.append("Authorization", token);
+    const [invoice, setInvoice] = React.useState([])
+     const [modal, setModal] = React.useState(false)
+     const [add, setAdd] = React.useState(null)
+    const { loading, userInfo, Invoice } = React.useContext(AuthContext);
+    // console.log(userInfo)
+    const token = userInfo.data?.accessToken
+      console.log(token)
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", token);
 
-    // var raw = "";
+    var raw = "";
 
-    // var requestOptions = {
-    //     method: 'GET',
-    //     headers: myHeaders,
-    //     body: raw,
-    //     redirect: 'follow'
-    // };
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
 
-    // const getData = () => {
-    //     fetch(`${BASE_URL}/invoicediscounting/invoice`, requestOptions)
-    //         .then(function (response) {
-    //             return response.json();
-    //         }).
-    //         then(function (myJson) {
-    //             let cont = myJson.data;
-    //             // console.log("invoice......", cont)
-    //             setInvoice(cont)
+    const getData = () => {
+        fetch(`${BASE_URL}/invoicediscounting/invoice`, requestOptions)
+            .then(function (response) {
+                return response.json();
+            }).
+            then(function (myJson) {
+                let cont = myJson.data;
+                 console.log("invoice......", cont)
+                setInvoice(cont)
 
-    //         }).catch(function (error) {
-    //             console.log(error)
-    //         })
+            }).catch(function (error) {
+                console.log(error)
+            })
 
-    // }
-    // React.useEffect(() => {
-    //     getData()
-    // }, [])
+    }
+    React.useEffect(() => {
+        getData()
+    }, [])
 
     // let convert = invoice.findIndex(element => element === 'fundedValue')
     // let convert1 = invoice.findIndex(element => element === 'fundingGoal')
@@ -67,8 +69,8 @@ const InvoiceMangement = () => {
 
     return (
         <ScrollView>
-            <Text style={{ textAlign: 'center', padding: 3, fontWeight: FONTWIEGHT.bold, fontSize: SIZES.h1 }}>Invoices</Text>
-            {/* {invoice.map((item, index) => */}
+            <Text style={styles.text0}>Invoices</Text>
+            {invoice.map((item, index) =>
                 <>
                     <View>
                         <View style={styles.view1}  >
@@ -76,21 +78,21 @@ const InvoiceMangement = () => {
                                 backgroundColor: COLORS.green,
                                 alignItems: 'center', paddingVertical: 20
                             }} >
-                                <Text style={styles.text1}>RECOURSE ON:</Text>
-                                <Text style={styles.text1}>Granite America Test_</Text>
+                                <Text style={{color: 'white', fontSize: 20, fontFamily: 'serif'}}>RECOURSE ON:</Text>
+                                <Text style={{color: 'white', fontSize: 20, fontFamily: 'san'}}>Granite America Test_</Text>
                             </View>
                             <View style={{ alignItems: 'center', }} >
-                                {/* <Text style={styles.bol}>{item.discountRate} %</Text> */}
+                                <Text style={styles.bol}>{item.discountRate} %</Text>
                                 <Text style={{ color: 'black' }}>NET ANNUAL YIELD</Text>
-                                {/* <Text style={styles.bol}> {item.invoiceTenure} D</Text> */}
+                                <Text style={styles.bol}> {item.invoiceTenure} D</Text>
                                 <Text style={{ color: 'black' }}> TENURE</Text>
 
                                 <View style={{
                                     paddingVertical: 20, alignItems: 'center'
                                 }}>
-                                    {/* <Text style={styles.bol}>INR  {item.fundingGoal}</Text> */}
+                                    <Text style={styles.bol}>INR  {item.fundingGoal}</Text>
                                     <Text>FUDING GOAL</Text>
-                                    {/* <Text style={styles.bol}>INR   {item.UnfundedValue}</Text> */}
+                                    <Text style={styles.bol}>INR   {item.UnfundedValue}</Text>
                                     <Text> UNFUNDED VALUE</Text>
                                 </View>
                             </View>
@@ -100,11 +102,12 @@ const InvoiceMangement = () => {
                                 , paddingTop: 20
                             }}>
                                 <Text style={styles.text}>Investment</Text>
-                                {/* <Text style={styles.text1}>Rs {value}/ {value1} </Text> */}
-                                <Text></Text>
+                               < Progress.Bar progress={0.3} width={200} />
+                                {/* <Text style={styles.text1}>Rs {value}/ {value1} </Text>
+                                <Text></Text> */}
                             </View>
-                            {/* <View onLayout={onLayout} /> */}
-                           
+                            {/* <View onLayout={onLayout} />
+                            */}
                             <View style={{ alignItems: 'center', paddingTop: 30 }}>
                                 <View>
                                     <TouchableOpacity style={styles.touchable1}>
@@ -115,13 +118,63 @@ const InvoiceMangement = () => {
                                 </View>
 
                                 <View style={{ paddingVertical: 5 }}>
-                                    {/* <TouchableOpacity onPress={() => setModal(true)} style={styles.touchable1}>
+                                    <TouchableOpacity onPress={() => setModal(true)} style={styles.touchable1}>
                                         <Text style={styles.text3} >
                                             Fund
                                         </Text>
-                                    </TouchableOpacity> */}
+                                    </TouchableOpacity>
 
                                 </View>
+                                <Modal
+                animationType="slide"
+                transparent={true}
+
+                visible={modal}
+                onRequestClose={() => {
+                    Alert.alert('Modal has been closed.');
+                    setModal(!modal);
+                }}>
+                <View style={styles.centeredView}>
+
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Funding</Text>
+
+
+
+                        <Text style={{ color: 'black', paddingBottom: 10, fontSize: 20, fontFamily: 'serif' }}>Wallet Net Balance: </Text>
+                        <View>
+
+
+                            <View >
+
+
+                                <View>
+                                    <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 16, fontFamily: 'system-ui' }}>Enter Funding Amount:</Text>
+                                    <TextInput style={styles.input} value={add} type='number'
+                                        placeholder='Enter the Number '
+                                        onChangeText={number => setAdd(number)} />
+                                </View>
+                                <View style={styles.touch}>
+                                    <TouchableOpacity>
+                                        <Pressable
+                                            onPress={() => setModal(!modal)}>
+                                            <Text style={styles.textStyle}>Close</Text>
+                                        </Pressable>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity>
+                                       
+                                        <Pressable
+                                            onPress={Invoice}>
+                                            <Text style={styles.textStyle1}>Add Funding</Text>
+                                        </Pressable>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </View>
+
+                    </View>
+                </View>
+            </Modal>
 
                             </View>
                         </View>
@@ -130,7 +183,7 @@ const InvoiceMangement = () => {
                     </View>
  
                 </>
-            {/* )} */}
+         )} 
           
 
         </ScrollView>
@@ -172,6 +225,7 @@ const styles = StyleSheet.create({
         borderColor: COLORS.green,
 
     },
+    text0: { paddingTop: 20,paddingHorizontal:20,  fontWeight: FONTWIEGHT.bold, fontSize: SIZES.h1, },
     text: {
         fontFamily: 'system-ui',
         fontSize: 16,
