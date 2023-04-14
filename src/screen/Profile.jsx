@@ -12,47 +12,47 @@ const Profile = () => {
 
 
 
-    // const [profileData1, setProfileData1] = useState([])
-    // const [profileData2, setProfileData2] = useState([])
-    // const { loading, userInfo } = useContext(AuthContext);
-    // const token = userInfo.data?.accessToken
-    // var myHeaders = new Headers();
-    // myHeaders.append("Authorization", token);
+    const [profileData1, setProfileData1] = useState([])
+    const [profileData2, setProfileData2] = useState([])
+    const { loading, userInfo } = useContext(AuthContext);
+    const token = userInfo.data?.accessToken
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", token);
 
-    // var raw = "";
+    var raw = "";
 
-    // var requestOptions = {
-    //     method: 'GET',
-    //     headers: myHeaders,
-    //     body: raw,
-    //     redirect: 'follow'
-    // };
-    // const getData = () => {
-    //     fetch(`${BASE_URL}/registration/user-profile`, requestOptions)
-    //         .then(function (response) {
-    //             if (response.ok) {
-    //                 return response.json();
-    //             }
-    //             throw new Error('Something went wrong.')
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+    const getData = () => {
+        fetch(`${BASE_URL}/registration/user-profile`, requestOptions)
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Something went wrong.')
 
-    //         }).
-    //         then(function (myJson) {
-    //             let result = myJson.data.left
-    //             setProfileData1(result)
-    //             console.log('Profile check left.....', result)
-    //             let result2 = myJson.data.right
-    //             setProfileData2(result2)
+            }).
+            then(function (myJson) {
+                let result = myJson.data.left
+                setProfileData1(result)
+                console.log('Profile check left.....', result)
+                let result2 = myJson.data.right
+                setProfileData2(result2)
 
-    //         })
-    //         .catch(function (error) {
-    //             console.warn('Request failed', error)
-    //         })
+            })
+            .catch(function (error) {
+                console.warn('Request failed', error)
+            })
 
-    // }
+    }
 
-    // useEffect(() => {
-    //     getData()
-    // }, [])
+    useEffect(() => {
+        getData()
+    }, [])
 
     const LeftContent = <Icon name="home" size={30} />
 
@@ -125,15 +125,15 @@ const Profile = () => {
                         <Text style={{ fontSize: 20, color: 'black', fontFamily: 'serif' }}>Information</Text>
 
                     </View>
-                    {/* <Card containerStyle={{padding: 0, width:'70%'}} >
+                    <Card containerStyle={{padding: 0, width:'70%'}} >
   {
     profileData2.map((u, i) => {
       return (
        
        
-            <View style={{ }} key={i}>
+            <View style={{alignItems: 'center'}} key={i}>
                  
-         <View style={{flexDirection: 'row',justifyContent: 'space-between', padding:20, }}>
+         <View style={styles.view1}>
          <Text style={styles.text2}>{u.name}  --- </Text>
           <Text >{u.value}</Text>
           </View>                 
@@ -146,9 +146,9 @@ const Profile = () => {
       );
     })
   }
-</Card> */}
+</Card>
 
-                    {/* {profileData2.map((item, index) =>
+                    {profileData2.map((item, index) =>
                         <View style={{ padding: 10, }} key={index}>
                             <Seperator />
                             <View style={styles.view1}>
@@ -158,7 +158,7 @@ const Profile = () => {
                             </View>
 
 
-                        </View>)} */}
+                        </View>)}
 
 
 
@@ -181,7 +181,8 @@ const styles = StyleSheet.create({
         padding: 10,
         flexDirection: 'column',
         justifyContent: 'space-between',
-        width: 350
+        width: 350,
+        alignItems: 'center'
     },
     view: {
         padding: 10,
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
         width: 350
     },
     text2: {
-        color: '#605452',
+        color: 'black',
         fontFamily: 'Georgia',
         fontSize: 16
     }

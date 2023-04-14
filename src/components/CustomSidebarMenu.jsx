@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import  * as React from 'react';
 import {
   SafeAreaView,
   View,
@@ -8,7 +8,7 @@ import {
   Linking,
   Modal,
   Pressable,
-  Button,
+
 } from 'react-native';
 
 import {
@@ -18,16 +18,15 @@ import {
 } from '@react-navigation/drawer';
 import { AuthContext } from '../context/AuthContext';
 import { COLORS, SIZES } from '../constants/theme';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { List } from 'react-native-paper';
+
 
 
 
 const CustomSidebarMenu = (props) => {
 
-  const {logout} = useContext(AuthContext) 
-  const [modalVisible, setModalVisible] = useState(false);
+  const {...logout} = React.useContext(AuthContext) 
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   
   

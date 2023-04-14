@@ -52,7 +52,7 @@ export const AuthProvider = ({ children, navigation }) => {
         try {
           await AsyncStorage.removeItem('userInfo');
           setUserInfo({})          
-          useNavigate('Login')
+          
         } catch (error) {
           console.log(`Error removing item: ${error}`);
         }

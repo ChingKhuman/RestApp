@@ -1,16 +1,13 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useContext } from "react";
 import { AuthContext } from '../context/AuthContext';
-import Funding from '../Funding';
 import LoginScreen from "../LoginScreen";
 import RegisterScreen from "../RegisterScreen";
-
-import Faq from '../screen/Faq';
-import Glossary from '../screen/Glossary';
 import HomeScreen from '../screen/HomeScreen';
-import WalletScreen from '../WalletScreen';
+import SplashScreen from '../SplashScreen';
+
 
 
 
@@ -19,25 +16,19 @@ const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
     const {userInfo, splashLoading} = useContext(AuthContext)
-     const {logout} = useContext(AuthContext) 
-     const status = userInfo.userStatus;
-     const role = userInfo.userRole;
-     const Tab = createBottomTabNavigator();
+    
     return (
-       <NavigationContainer>
-          
-       
-        <Stack.Navigator>
-         
-        { userInfo.data? (
-              
-        <>
-                  
+       <NavigationContainer>      
+        <Stack.Navigator>         
+        {
+        splashLoading ? (
+            <Stack.Screen name='Splash Screen' component={SplashScreen}
+            options={{headerShown: false}}/>
+        ):
+        userInfo.data? (              
+        <>                 
                                
-                 <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerShown: false}}/> 
-                    <Stack.Screen name='Funding' component={Funding} options={{headerShown: false}}/> 
-                 <Stack.Screen name='Wallet' component={WalletScreen} options={{headerShown: false}}/> 
-                
+                 <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerShown: false}}/>                 
                  </>  
                  
         ):(

@@ -5,9 +5,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Faq from './Faq';
 import Glossary from './Glossary';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Help = ({navigation}) => {
-  const Stack = createNativeStackNavigator();
+  const Tab = createBottomTabNavigator();
 
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
@@ -18,21 +19,14 @@ const Help = ({navigation}) => {
 return (
     <>
      <View style={{padding: 10, alignItems:'center'}}>
-    <TouchableOpacity onPress={() => navigation.navigate('Glossary')}>
-      <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-    <Text style={{fontSize:20, }}>Glossary</Text>
-    
-    </View></TouchableOpacity>
-    <TouchableOpacity onPress={() => navigation.navigate('Faq')}><Text style={{fontSize:20, }}>FAQs</Text></TouchableOpacity>
-    </View>
-        <Stack.Navigator>
-          <>
-         
-          <Stack.Screen name='Glossary' component={Glossary} />
-          <Stack.Screen name='Faq' component={Faq} />
-      
+   
+       </View>
+        <Tab.Navigator>
+          <>         
+          <Tab.Screen name='Glossary' component={Glossary} options={{headerShown: false}} />
+          <Tab.Screen name='Faq' component={Faq} options={{headerShown: false}} />    
       </>
-        </Stack.Navigator>
+        </Tab.Navigator>
      
     <View>
         

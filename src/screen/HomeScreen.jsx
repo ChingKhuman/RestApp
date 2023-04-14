@@ -3,27 +3,28 @@ import {StyleSheet} from 'react-native';
 import WalletScreen from '../WalletScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Dashboard from './Dashboard';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CustomSidebarMenu from '../components/CustomSidebarMenu';
 import InvoiceMangement from './InvoiceManagement';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Notification from './Notification';
-import Help from './Help';
+import Help  from './Help/Help';
 import Funding from '../Funding';
 import Settlement from './Settlement';
 import Tds from './Tds';
 import Profile from './Profile';
 import { COLORS } from '../constants/theme';
-import { List } from 'react-native-paper';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 
 
 
-const HomeScreen = ({navigation}) => {
+
+
+const HomeScreen = () => {
 
   const Drawer = createDrawerNavigator();
-  const Stack = createNativeStackNavigator();
+   const Tab = createBottomTabNavigator();
 
   
 
