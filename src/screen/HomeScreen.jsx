@@ -31,13 +31,7 @@ const HomeScreen = () => {
   return (
     <> 
     <Drawer.Navigator
-     drawerContentOptions={{
-     
-      labelStyle:{
-        marginLeft:5,
-        fontsize:20
-      }
-    }}
+  
     screenOptions={{
       headerShown:'true',
       drawerActiveTintColor:"grey",
@@ -51,9 +45,9 @@ const HomeScreen = () => {
       itemStyle: {marginVertical: 5},
       
       headerStyle: {
-        backgroundColor: 'green', //Set Header color
+        backgroundColor: '#332E51', //Set Header color
       },
-      headerTintColor: '#fff', //Set Header text color
+      headerTintColor: 'white', //Set Header text color
       headerTitleStyle: {
         fontWeight: 'bold', //Set Header text style
       },
@@ -214,86 +208,88 @@ export default HomeScreen;
 
 
 
-// import Spinner from "react-native-loading-spinner-overlay/lib";
-// import { Button, StyleSheet,Modal, Text,Pressable, TouchableOpacity, View } from "react-native"
-// import { AuthContext } from "./context/AuthContext";
+// // import Spinner from "react-native-loading-spinner-overlay/lib";
+// // import { Button, StyleSheet,Modal, Text,Pressable, TouchableOpacity, View } from "react-native"
+// // import { AuthContext } from "./context/AuthContext";
 
 
 
 
-// const HomeScreen = (navigation) => {
-//      const {userInfo,logout, loading} = useContext(AuthContext)
+// // const HomeScreen = (navigation) => {
+// //      const {userInfo,logout, loading} = useContext(AuthContext)
 
-//      const [modalVisible, setModalVisible]= useState(false)
+// //      const [modalVisible, setModalVisible]= useState(false)
      
-//      const showCancelModal = () => setCancelVisible(true);
+// //      const showCancelModal = () => setCancelVisible(true);
 
-//      const hideCancelModal = () => setCancelVisible(false);
+// //      const hideCancelModal = () => setCancelVisible(false);
    
-//      const [cancelVisible, setCancelVisible] = useState(false);
+// //      const [cancelVisible, setCancelVisible] = useState(false);
    
-//     return (     
-//           <View>
-//            <Spinner visible={loading} />
-//            <Text>
-//             Welcome{userInfo.name}
-//            </Text>
-//            <Modal
-//         animationType="slide"
-//         transparent={true}
-//         visible={modalVisible}
-//         onRequestClose={() => {
-//           Alert.alert('Modal has been closed.');
-//           setModalVisible(!modalVisible);
-//         }}>
-//          {/* <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+// //     return (     
+// //           <View>
+// //            <Spinner visible={loading} />
+// //            <Text>
+// //             Welcome{userInfo.name}
+// //            </Text>
+// //            <Modal
+// //         animationType="slide"
+// //         transparent={true}
+// //         visible={modalVisible}
+// //         onRequestClose={() => {
+// //           Alert.alert('Modal has been closed.');
+// //           setModalVisible(!modalVisible);
+// //         }}>
+// //          {/* <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
 
-//          <Button title="logout" >{logout}</Button>
-//          <Text>Hide Modal</Text>
-//          </TouchableOpacity> */}
+// //          <Button title="logout" >{logout}</Button>
+// //          <Text>Hide Modal</Text>
+// //          </TouchableOpacity> */}
        
-//         <View style={styles.centeredView}>
-//           <View style={styles.modalView}>
-//             <Text style={styles.modalText}>Hello World!</Text>
-//             <Pressable
-//               style={[styles.button, styles.buttonClose]}
-//               onPress={() => setModalVisible(!modalVisible)}>
+// //         <View style={styles.centeredView}>
+// //           <View style={styles.modalView}>
+// //             <Text style={styles.modalText}>Hello World!</Text>
+// //             <Pressable
+// //               style={[styles.button, styles.buttonClose]}
+// //               onPress={() => setModalVisible(!modalVisible)}>
              
-//             </Pressable>
+// //             </Pressable>
          
             
-//         </View>
-//         </View>
-//         </Modal>
-//         </View>
+// //         </View>
+// //         </View>
+// //         </Modal>
+// //         </View>
         
-//     )
-// }
-// const styles = StyleSheet.create({
-//     btn: {
-//         backgroundColor: 'red',
-//         // borderRadius: hp('1%'),
-//         // padding: hp('1%'),
-//         width: '100%',
-//       },
-//       btn_white: {
-//         backgroundColor: 'white',
-//         // borderRadius: hp('1%'),
-//         // padding: hp('1%'),
-//         width: '100%',
-//       },
-//       btn_text_no: {
-//         color: 'white',
+// //     )
+// // }
+// // const styles = StyleSheet.create({
+// //     btn: {
+// //         backgroundColor: 'red',
+// //         // borderRadius: hp('1%'),
+// //         // padding: hp('1%'),
+// //         width: '100%',
+// //       },
+// //       btn_white: {
+// //         backgroundColor: 'white',
+// //         // borderRadius: hp('1%'),
+// //         // padding: hp('1%'),
+// //         width: '100%',
+// //       },
+// //       btn_text_no: {
+// //         color: 'white',
         
-//         textTransform: 'capitalize',
-//       },
-//       btn_text_yes: {
-//         color: 'black',
+// //         textTransform: 'capitalize',
+// //       },
+// //       btn_text_yes: {
+// //         color: 'black',
        
-//         textTransform: 'capitalize',
-//       },
-//       contain: {height: 20},
+// //         textTransform: 'capitalize',
+// //       },
+// //       contain: {height: 20},
     
-//     });
+// //     });
 
-// export default HomeScreen;
+// // export default HomeScreen;
+
+

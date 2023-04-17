@@ -25,7 +25,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 const CustomSidebarMenu = (props) => {
 
-  const {...logout} = React.useContext(AuthContext) 
+  const {logout} = React.useContext(AuthContext) 
   const [modalVisible, setModalVisible] = React.useState(false);
 
   
