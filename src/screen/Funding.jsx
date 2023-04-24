@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { BASE_URL } from './constants/Config';
-import { COLORS, FONTWIEGHT } from './constants/theme';
-import { AuthContext } from './context/AuthContext';
+import { BASE_URL } from '../constants/Config';
+import { COLORS, FONTWIEGHT } from '../constants/theme';
+import { AuthContext } from '../context/AuthContext';
 import Spinner from "react-native-loading-spinner-overlay/lib";
 
 const Funding = () => {

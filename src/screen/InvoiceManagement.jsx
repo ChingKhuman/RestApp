@@ -3,7 +3,6 @@ import { View, Text,Alert, Pressable, StyleSheet, ScrollView,TouchableOpacity, M
 import { BASE_URL } from '../constants/Config';
 import { COLORS, FONTWIEGHT, SIZES } from '../constants/theme';
 import { AuthContext } from '../context/AuthContext';
-import * as Progress from 'react-native-progress'
 import Spinner from "react-native-loading-spinner-overlay/lib";
 
 const InvoiceMangement = () => {
@@ -83,136 +82,139 @@ const InvoiceMangement = () => {
 
 
     return (
-        <ScrollView>
-            <Text style={styles.text0}>Invoices</Text>
-            <Spinner visible={loading}/>
+        // <ScrollView>
+        //     <Text style={styles.text0}>Invoices</Text>
+        //     <Spinner visible={loading}/>
 
-            {invoice.map((item, index) =>
-                <>
-                    <View>
-                        <View style={styles.view1} key={index} >
-                            <View style={{
-                                backgroundColor: COLORS.green,
-                                alignItems: 'center', paddingVertical: 20
-                            }} >
-                                <Text style={{ color: 'white', fontSize: 20, fontFamily: 'serif' }}>RECOURSE ON:</Text>
-                                <Text style={{ color: 'white', fontSize: 20, fontFamily: 'san' }}>Granite America Test_</Text>
-                            </View>
-                            <View style={{ alignItems: 'center', }} >
-                                <Text style={styles.bol}>{item.discountRate} %</Text>
-                                <Text style={{ color: 'black' }}>NET ANNUAL YIELD</Text>
-                                <Text style={styles.bol}> {item.invoiceTenure} D</Text>
-                                <Text style={{ color: 'black' }}> TENURE</Text>
+        //     {invoice.map((item, index) =>
+        //         <>
+        //             <View>
+        //                 <View style={styles.view1} key={index} >
+        //                     <View style={{
+        //                         backgroundColor: COLORS.green,
+        //                         alignItems: 'center', paddingVertical: 20
+        //                     }} >
+        //                         <Text style={{ color: 'white', fontSize: 20, fontFamily: 'serif' }}>RECOURSE ON:</Text>
+        //                         <Text style={{ color: 'white', fontSize: 20, fontFamily: 'san' }}>Granite America Test_</Text>
+        //                     </View>
+        //                     <View style={{ alignItems: 'center', }} >
+        //                         <Text style={styles.bol}>{item.discountRate} %</Text>
+        //                         <Text style={{ color: 'black' }}>NET ANNUAL YIELD</Text>
+        //                         <Text style={styles.bol}> {item.invoiceTenure} D</Text>
+        //                         <Text style={{ color: 'black' }}> TENURE</Text>
 
-                                <View style={{
-                                    paddingVertical: 20, alignItems: 'center'
-                                }}>
-                                    <Text style={styles.bol}>INR  {item.fundingGoal}</Text>
-                                    <Text>FUDING GOAL</Text>
-                                    <Text style={styles.bol}>INR   {item.UnfundedValue}</Text>
-                                    <Text> UNFUNDED VALUE</Text>
-                                </View>
-                            </View>
+        //                         <View style={{
+        //                             paddingVertical: 20, alignItems: 'center'
+        //                         }}>
+        //                             <Text style={styles.bol}>INR  {item.fundingGoal}</Text>
+        //                             <Text>FUDING GOAL</Text>
+        //                             <Text style={styles.bol}>INR   {item.UnfundedValue}</Text>
+        //                             <Text> UNFUNDED VALUE</Text>
+        //                         </View>
+        //                     </View>
 
-                            <View style={{
-                                flexDirection: 'row', justifyContent: 'space-between'
-                                , padding: 20
-                            }}>
-                                <Text style={styles.text}>Investment</Text>
-                                {/* <Text style={styles.text1}>Rs {value} </Text> */}
+        //                     <View style={{
+        //                         flexDirection: 'row', justifyContent: 'space-between'
+        //                         , padding: 20
+        //                     }}>
+        //                         <Text style={styles.text}>Investment</Text>
+        //                         {/* <Text style={styles.text1}>Rs {value} </Text> */}
 
-                            </View>
-                            <View style={{ alignItems: 'flex-start', paddingStart: 20 }}>
-                                {/* < Progress.Bar progress={0.5} width={100} /> */}
-                            </View>
-                            {/* <View onLayout={onLayout} />
-                            */}
-                            <View style={{ alignItems: 'center', paddingTop: 30 }}>
-                                <View>
-                                    <TouchableOpacity style={styles.touchable1}>
-                                        <Text style={styles.text3} >
-                                            Details
-                                        </Text>
-                                    </TouchableOpacity>
-                                </View>
+        //                     </View>
+        //                     <View style={{ alignItems: 'flex-start', paddingStart: 20 }}>
+        //                         {/* < Progress.Bar progress={0.5} width={100} /> */}
+        //                     </View>
+        //                     {/* <View onLayout={onLayout} />
+        //                     */}
+        //                     <View style={{ alignItems: 'center', paddingTop: 30 }}>
+        //                         <View>
+        //                             <TouchableOpacity style={styles.touchable1}>
+        //                                 <Text style={styles.text3} >
+        //                                     Details
+        //                                 </Text>
+        //                             </TouchableOpacity>
+        //                         </View>
 
-                                <View style={{ paddingVertical: 5, }}>
-                                    <TouchableOpacity onPress={() => setModal(true)} style={styles.touchable1}>
-                                        <Text style={styles.text3} >
-                                            Fund
-                                        </Text>
-                                    </TouchableOpacity>
+        //                         <View style={{ paddingVertical: 5, }}>
+        //                             <TouchableOpacity onPress={() => setModal(true)} style={styles.touchable1}>
+        //                                 <Text style={styles.text3} >
+        //                                     Fund
+        //                                 </Text>
+        //                             </TouchableOpacity>
 
-                                </View>
-                                <Modal
-                                    backdropOpacity={0.3}
+        //                         </View>
+        //                         <Modal
+        //                             backdropOpacity={0.3}
 
-                                    animationType="fade"
-                                    transparent
-                                    visible={modal}
-                                    onRequestClose={() => {
-                                        Alert.alert('Modal has been closed.');
-                                        setModal(!modal);
-                                    }}>
-                                    <View style={styles.centeredView}>
+        //                             animationType="fade"
+        //                             transparent
+        //                             visible={modal}
+        //                             onRequestClose={() => {
+        //                                 Alert.alert('Modal has been closed.');
+        //                                 setModal(!modal);
+        //                             }}>
+        //                             <View style={styles.centeredView}>
 
-                                        <View style={styles.modalView}>
-                                            <Text style={styles.modalText}>Funding</Text>
-
-
-
-                                            <Text style={{ color: 'black', paddingBottom: 10, fontSize: 20, fontFamily: 'serif' }}>Wallet Net Balance: </Text>
-                                            <View>
+        //                                 <View style={styles.modalView}>
+        //                                     <Text style={styles.modalText}>Funding</Text>
 
 
-                                                <View >
+
+        //                                     <Text style={{ color: 'black', paddingBottom: 10, fontSize: 20, fontFamily: 'serif' }}>Wallet Net Balance: </Text>
+        //                                     <View>
 
 
-                                                    <View>
-                                                        <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 16, fontFamily: 'system-ui' }}>Enter Funding Amount:</Text>
-                                                        <TextInput style={styles.input} value={add} type='number'
-                                                            placeholder='Enter the Number '
-                                                            onChangeText={number => setAdd(number)} />
-                                                    </View>
-                                                    <View style={styles.touch}>
-                                                        <TouchableOpacity>
-                                                            <Pressable
-                                                                onPress={() => setModal(!modal)}>
-                                                                <Text style={styles.textStyle}>Close</Text>
-                                                            </Pressable>
-                                                        </TouchableOpacity>
-                                                        <TouchableOpacity>
-
-                                                            <Pressable
-                                                                onPress={Invoice}>
-                                                                <Text style={styles.textStyle1}>Add Funding</Text>
-                                                            </Pressable>
-                                                        </TouchableOpacity>
-                                                    </View>
-                                                </View>
-                                            </View>
-
-                                        </View>
-                                    </View>
-                                </Modal>
-
-                            </View>
+        //                                         <View >
 
 
-                        </View>
+        //                                             <View>
+        //                                                 <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 16, fontFamily: 'system-ui' }}>Enter Funding Amount:</Text>
+        //                                                 <TextInput style={styles.input} value={add} type='number'
+        //                                                     placeholder='Enter the Number '
+        //                                                     onChangeText={number => setAdd(number)} />
+        //                                             </View>
+        //                                             <View style={styles.touch}>
+        //                                                 <TouchableOpacity>
+        //                                                     <Pressable
+        //                                                         onPress={() => setModal(!modal)}>
+        //                                                         <Text style={styles.textStyle}>Close</Text>
+        //                                                     </Pressable>
+        //                                                 </TouchableOpacity>
+        //                                                 <TouchableOpacity>
+
+        //                                                     <Pressable
+        //                                                         onPress={Invoice}>
+        //                                                         <Text style={styles.textStyle1}>Add Funding</Text>
+        //                                                     </Pressable>
+        //                                                 </TouchableOpacity>
+        //                                             </View>
+        //                                         </View>
+        //                                     </View>
+
+        //                                 </View>
+        //                             </View>
+        //                         </Modal>
+
+        //                     </View>
 
 
-                    </View>
+        //                 </View>
 
 
-                </>
-            )}
-            <View style={{ marginVertical: 20, backgroundColor: 'white', height: 40 }} >
-                <Text style={{ textAlign: 'center', paddingTop: 10, fontFamily: 'Georgia' }}>Copyright @ 2021-2022<Text style={{ color: 'blue' }}>UpCap.</Text>All right Reserved.</Text>
+        //             </View>
 
-            </View>
 
-        </ScrollView>
+        //         </>
+        //     )}
+        //     <View style={{flex:2, marginVertical: 20, backgroundColor: 'white', height: 40 }} >
+        //         <Text style={{ textAlign: 'center', paddingTop: 10, fontFamily: 'Georgia' }}>Copyright @ 2021-2022<Text style={{ color: 'blue' }}>UpCap.</Text>All right Reserved.</Text>
+
+        //     </View>
+
+        // </ScrollView>
+        <View>
+            <Text>Invest</Text>
+        </View>
     )
 }
 export default InvoiceMangement;

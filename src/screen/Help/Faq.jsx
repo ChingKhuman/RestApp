@@ -19,6 +19,7 @@ const Faq = () => {
     // console.log(userInfo)
     const token = userInfo.data?.accessToken
     console.log(token)
+    const regex = /(<([^>]+)>)/ig;
     var myHeaders = new Headers();
     myHeaders.append("Authorization", token);
 
@@ -43,7 +44,7 @@ const Faq = () => {
             then(function (myJson) {
                 let result = myJson.data
                 setFaq(result)
-                 console.log('check...result..', result)
+                //  console.log('check...result..', result)
                 setLoading(false)
 
             })
@@ -68,19 +69,19 @@ const Faq = () => {
                     </View>
                 </View>
                 <Spinner visible={loading} />
-                <View>
+                <View style={{paddingHorizontal: 10}}>
                     {faq.map(({question, answer}, index) => {
                         return (
-                            <View style={{justifyContent:'center',alignItems: 'center'}}>
+                            <View style={{}} key={index}>
                                 <TouchableOpacity key={question}
                                 onPress={() => {setCurrentIndex(index === currentIndex ? null: index)}}
                                 activeOpacity={0.9} style={{}}>
-                                    <Text style={{color: 'blue', fontSize:20, paddingVertical: 10,
-                                borderWidth: 1, borderColor:'grey' ,width:screen}}>{question}</Text>
+                                    <Text style={{color: 'blue',paddingHorizontal:5, fontSize:20, paddingVertical: 5,
+                                borderWidth: 1, borderColor:'grey' }}>{question.replace(regex, '')}</Text>
                                 </TouchableOpacity>
                                 {index ===currentIndex && (
                                     <View>
-                                        <Text> {answer}</Text>
+                                        <Text> {answer.replace(regex, '')}</Text>
                                         </View>
                                 )}
                             </View>

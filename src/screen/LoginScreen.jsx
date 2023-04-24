@@ -11,7 +11,7 @@ import {
     ScrollView,
   } from 'react-native';
 import Spinner from "react-native-loading-spinner-overlay/lib";
-import { AuthContext } from "./context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 
 
   
@@ -26,7 +26,7 @@ const LoginScreen = ({navigation}) => {
         <SafeAreaView style={styles.main}>
           <ScrollView>
         <View style={styles.sectionContainer}>
-        <Image style={styles.img} source={require('../assets/platform.png')} />
+        <Image style={styles.img} source={require('../../assets/platform.png')} />
         <Spinner visible={loading}/>
         
        

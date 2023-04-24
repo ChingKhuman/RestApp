@@ -8,6 +8,7 @@ import {
   Linking,
   Modal,
   Pressable,
+  ImageBackground,
 
 } from 'react-native';
 
@@ -19,6 +20,8 @@ import {
 import { AuthContext } from '../context/AuthContext';
 import { COLORS, SIZES } from '../constants/theme';
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { TouchableOpacity } from 'react-native';
+
 
 
 
@@ -35,40 +38,37 @@ const CustomSidebarMenu = (props) => {
     <SafeAreaView style={{flex: 1}}>
       <>
     
-            <Image style={styles.sideMenuProfileIcon} source={require('../../assets/platform.png')} />
-      <DrawerContentScrollView {...props}>
-        <DrawerItemList {...props} />
-    
-
+            
+      <DrawerContentScrollView {...props} >
+        {/* <ImageBackground  source={require('../../assets/BlueTheme.jpg')}> */}
+        <Image style={styles.sideMenuProfileIcon} source={require('../../assets/platform.png')} />
        
-          <DrawerItem
-           options={{
-            drawerIcon: ({focused, size}) => (
-              <Icon name="rocket" 
-              size={25}
-             
-               />
-            )
-          }}
-          label="Logout"        
-          onPress={() => setModalVisible(true)}
-        /> 
-        
-
-        {/* <DrawerItem
-        label='Check'
-        onPress={()=> Linking.openURL('https://google.com')}/>          */}
+        {/* </ImageBackground> */}
+        <DrawerItemList {...props}
+         />
 
 
       </DrawerContentScrollView>
-      <Text
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <Icon name='rocket-outline'  size={20}             
+               />
+               <TouchableOpacity onPress={() => setModalVisible(true)}>
+               <Text style={{fontSize: 20,color: 'black', fontFamily: 'Roboto-Medium', marginLeft: 5,fontWeight:'bold'}}>
+                Logout
+               </Text>
+               </TouchableOpacity>
+      </View>
+     <TouchableOpacity onPress={() => Linking.openURL('https://finsightventures.in')}>
+     <Text
         style={{
           fontSize: 16,
           textAlign: 'center',
-          color: 'grey'
+          color: 'grey',
+          paddingBottom: 10
         }}>
         www.finsightVentures.com
       </Text>
+     </TouchableOpacity>
 
       <Modal
     animationType="slide"
@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 100 / 2,
     alignSelf: 'center',
+    marginVertical: 30
   },
   iconStyle: {
     width: 15,

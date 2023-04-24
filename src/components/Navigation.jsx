@@ -3,10 +3,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useContext } from "react";
 import { AuthContext } from '../context/AuthContext';
-import LoginScreen from "../LoginScreen";
-import RegisterScreen from "../RegisterScreen";
+import LoginScreen from "../screen/LoginScreen";
+import RegisterScreen from "../screen/RegisterScreen";
 import HomeScreen from '../screen/HomeScreen';
-import SplashScreen from '../SplashScreen';
+import SplashScreen from '../screen/SplashScreen';
+import Login from '../screen/Login';
+import Lo from '../screen/Lo';
 
 
 
@@ -33,8 +35,10 @@ const Navigation = () => {
                  
         ):(
              <>
-                <Stack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
-                 <Stack.Screen name='Register' component={RegisterScreen}/>                           
+                {/* <Stack.Screen name='GetStarted' component={LoginScreen} options={{headerShown: false}}/> */}
+                <Stack.Screen name='GetStarted' component={Lo} options={{headerShown: false}}/>
+                 <Stack.Screen name='Register' component={RegisterScreen}/>   
+                 <Stack.Screen name='Login' component={Login} options={{headerShown: false}}/>                        
                 </>
            )}
             

@@ -1,7 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
 import { BASE_URL } from "../constants/Config";
 
 
@@ -10,7 +9,6 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children, navigation }) => {
     const [loading, setLoading] = useState(false);
     const [userInfo, setUserInfo] = useState({});
-    const [addInfo, setAddInfo] = useState()
     const [splashLoading, setSplashLoading] = useState(false)
    
     

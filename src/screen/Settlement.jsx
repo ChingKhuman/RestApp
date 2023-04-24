@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View, Alert } from 'react-native';
+import { Modal, Pressable, StyleSheet, Text, View, Alert, ScrollView } from 'react-native';
 import { BASE_URL } from '../constants/Config';
 import { SIZES } from '../constants/theme';
 import { AuthContext } from '../context/AuthContext';
@@ -22,14 +22,14 @@ const Settlement = ({ navigation }) => {
   var raw = "";
 
   var requestOptions = {
-    method: 'GET',
+    method: 'POST',
     headers: myHeaders,
     body: raw,
     redirect: 'follow'
   };
   const getData = () => {
     // loading(true);
-    fetch(`${BASE_URL}/transaction/investor-tds-transaction`, requestOptions)
+    fetch(`${BASE_URL}/transaction/investor-transaction`, requestOptions)
       .then(function (response) {
         if (response.ok) {
           return response.json();
@@ -39,7 +39,7 @@ const Settlement = ({ navigation }) => {
       }).
       then(function (myJson) {
         let result = myJson
-        // console.log("cehdkjdlkfjdlfkjdlfkjdfldkjf", result)
+        //  console.log("cehdkjdlkfjdlfkjdlfkjdfldkjf", result)
         setSettle(result)
 
       })
@@ -58,7 +58,7 @@ const Settlement = ({ navigation }) => {
   return (
 
 
-    <View>
+    <>
       <View>
         <Text style={{ fontSize: SIZES.h2, padding: 7 }}> Settlement</Text>
         <View style={{ flexDirection: 'row' }}>
@@ -69,63 +69,72 @@ const Settlement = ({ navigation }) => {
       <Spinner visible={loading} />
 
       {settle?.code === 500 ? Alert.alert('You have not funded an invoice yet, or the invoices you funded are not yet settled.') : (
-        <>
-          <Text>All Settlement</Text>
-        </>
+        <ScrollView>
+           <View style={styles.container}>
+              <View style={styles.header}>
+                <View style={{ width: '18%' }}>
+                  <Text style={[styles.text, { height: 30, fontSize: 15 }]}>Invoice</Text>
+                </View>
+                <View style={{ width: '18%' }}>
+                  <Text style={[styles.text, { height: 30, fontSize: 15 }]}>Type</Text>
+                </View>
+                <View style={{ width: '18%' }}>
+                  <Text style={[styles.text, { height: 30, fontSize: 15 }]}>
+                    Amount
+                  </Text>
+                </View>
+                <View style={{ width: '18%' }}>
+                  <Text style={[styles.text, { height: 30, fontSize: 15 }]}>
+                    Status
+                  </Text>
+                </View>
+                <View style={{ width: '18%' }}>
+                  <Text style={[styles.text, { height: 30, fontSize: 15 }]}>
+                    Date
+                  </Text>
+                </View>
+              </View>
+
+              </View>
+        </ScrollView>
       )
 
       }
 
       
-    </View>
+    </>
 
 
   );
 };
 
 const styles = StyleSheet.create({
-  centeredView: {
+  container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
+    backgroundColor: 'white', padding: 10
   },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+  header: {
+    width: '100%',
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: 'black',
+    paddingLeft: 25,
+    backgroundColor: '#273A67'
+
   },
-  button: {
-    borderRadius: 20,
+  text: {
+    color: 'black',
+    fontFamily: 'serif',
+    fontWeight: 'bold'
+
+  },
+  content: {
+    width: '100%',
+    flexDirection: 'row',
     padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-    color: 'black'
-  },
+    marginTop: 8
+  }
+ 
 });
 
 

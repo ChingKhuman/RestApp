@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { View, Text, Button, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
   
-import { BASE_URL } from './constants/Config';
-import { COLORS, FONTWIEGHT, SIZES } from './constants/theme';
-import { AuthContext } from './context/AuthContext';
+import { BASE_URL } from '../constants/Config';
+import { COLORS, FONTWIEGHT, SIZES } from '../constants/theme';
+import { AuthContext } from '../context/AuthContext';
 
 import Spinner from "react-native-loading-spinner-overlay/lib";
 
@@ -38,7 +38,7 @@ const WalletScreen = ({ navigation }) => {
             }).
             then(function (myJson) {
                 let cont = myJson.data.finvridhhiWallet;
-                //   console.log('fungcheck', cont)
+                   console.log('fungcheck', cont)
                 setWallet(cont)
                 setLoading(false)
             }).catch(function (error) {

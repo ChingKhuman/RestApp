@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import { Button, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { AuthContext } from "./context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 
 const RegisterScreen = ({navigation}) => {
 
@@ -17,7 +17,7 @@ const RegisterScreen = ({navigation}) => {
              <SafeAreaView>
             <View style={styles.sectionContainer}>
               <Spinner visible={loading}/>
-              <Image style={styles.img} source={require('../assets/platform.png')} />
+              <Image style={styles.img} source={require('../../assets/platform.png')} />
    
             <Text style= {styles.text1}>Please click on the profile that best 
             describes you -</Text>
