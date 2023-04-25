@@ -73,10 +73,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       marginTop: 150
     },
-    text1: {
-  fontSize: 30,
-  fontFamily: 'Arial'
-    },
+
     input: {
       height: 60,
       width: 290,

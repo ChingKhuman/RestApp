@@ -4,6 +4,7 @@ import { BASE_URL } from '../constants/Config';
 import { SIZES } from '../constants/theme';
 import { AuthContext } from '../context/AuthContext';
 import Spinner from "react-native-loading-spinner-overlay/lib";
+import { Card } from 'react-native-paper';
 
 
 
@@ -12,8 +13,10 @@ const Settlement = ({ navigation }) => {
 
 
   const [settle, setSettle] = useState()
+  const [dataSettle, setDataSettle] = useState([])
   const [error, setError] = useState()
-  const { loading, userInfo } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false)
+  const { userInfo } = useContext(AuthContext);
   // console.log(userInfo)
   const token = userInfo.data?.accessToken
   var myHeaders = new Headers();
@@ -28,8 +31,9 @@ const Settlement = ({ navigation }) => {
     redirect: 'follow'
   };
   const getData = () => {
-    // loading(true);
+   setLoading(true)
     fetch(`${BASE_URL}/transaction/investor-transaction`, requestOptions)
+
       .then(function (response) {
         if (response.ok) {
           return response.json();
@@ -41,6 +45,36 @@ const Settlement = ({ navigation }) => {
         let result = myJson
         //  console.log("cehdkjdlkfjdlfkjdlfkjdfldkjf", result)
         setSettle(result)
+        setLoading(false)
+        
+
+      })
+      .catch(function (error) {
+        console.warn('Request failed', error)
+        setLoading(false)
+      })
+
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  const getData1 = () => {
+   
+    fetch(`${BASE_URL}/transaction/investor-transaction`, requestOptions)
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong.')
+
+      }).
+      then(function (myJson) {
+        let result = myJson.data
+          // console.log("cehdkjdlkfjdlfkjdlfkjdfldkjf", result)
+        setDataSettle(result)
+        
 
       })
       .catch(function (error) {
@@ -50,7 +84,7 @@ const Settlement = ({ navigation }) => {
   }
 
   useEffect(() => {
-    getData()
+    getData1()
   }, [])
 
 
@@ -60,42 +94,35 @@ const Settlement = ({ navigation }) => {
 
     <>
       <View>
-        <Text style={{ fontSize: SIZES.h2, padding: 7 }}> Settlement</Text>
-        <View style={{ flexDirection: 'row' }}>
-          <Text style={{ fontSize: SIZES.h4, padding: 7, color: 'orange' }}> Home /</Text>
-          <Text style={{ fontSize: SIZES.h4, padding: 7 }}>Settlements</Text>
+        {/* <Text style={{ fontSize: 20, padding: 7 , }}> Settlement</Text> */}
+        <View style={{ flexDirection: 'row', alignItems: 'flex-end'}}>
+          <Text style={{ fontSize: SIZES.h2, padding: 7, color: 'orange', }}> HOME /</Text>
+          <Text style={{ fontSize: SIZES.h2, padding: 7 }}>Settlements</Text>
         </View>
       </View>
       <Spinner visible={loading} />
 
       {settle?.code === 500 ? Alert.alert('You have not funded an invoice yet, or the invoices you funded are not yet settled.') : (
         <ScrollView>
-           <View style={styles.container}>
-              <View style={styles.header}>
-                <View style={{ width: '18%' }}>
-                  <Text style={[styles.text, { height: 30, fontSize: 15 }]}>Invoice</Text>
+          {/* <View style={{height:100, width: '100%', borderWidth:1, borderColor:'black'}}>
+          <Text>Finsight Settlement</Text>
+          </View> */}
+              {dataSettle.map((item, index) => 
+                <View style={{paddingHorizontal: 20, paddingVertical: 15}} key={index}>
+                 
+                <Card>
+                  <Card.Content>
+                  {/* <IconAnt name="wallet" size={50} color= 'green' /> */}
+                 
+                    <Text style={styles.text1}>Invoice: {item.uniqueInvoiceID}</Text>
+                    <Text style={styles.text1}>Type: {item.transactionType}</Text>
+                    <Text style={styles.text1}>Amount: {item.transactionAmount}</Text>
+                    <Text style={styles.text1}>Date: {item.transactionDate}</Text>
+                  </Card.Content>
+                </Card>
                 </View>
-                <View style={{ width: '18%' }}>
-                  <Text style={[styles.text, { height: 30, fontSize: 15 }]}>Type</Text>
-                </View>
-                <View style={{ width: '18%' }}>
-                  <Text style={[styles.text, { height: 30, fontSize: 15 }]}>
-                    Amount
-                  </Text>
-                </View>
-                <View style={{ width: '18%' }}>
-                  <Text style={[styles.text, { height: 30, fontSize: 15 }]}>
-                    Status
-                  </Text>
-                </View>
-                <View style={{ width: '18%' }}>
-                  <Text style={[styles.text, { height: 30, fontSize: 15 }]}>
-                    Date
-                  </Text>
-                </View>
-              </View>
-
-              </View>
+              )}
+          
         </ScrollView>
       )
 
@@ -133,7 +160,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     marginTop: 8
-  }
+  },
+  text1: {fontSize: 20, fontWeight: 'bold',fontFamily: 'Roboto-Medium'}
  
 });
 

@@ -6,12 +6,18 @@ import Dashboard from './Dashboard';
 import CustomSidebarMenu from '../components/CustomSidebarMenu';
 import InvoiceMangement from './InvoiceManagement';
 import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon1 from 'react-native-vector-icons/Entypo'
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon3 from 'react-native-vector-icons/Feather'
 import Notification from './Notification';
 import Help  from './Help/Help';
 import Funding from './Funding';
 import Settlement from './Settlement';
 import Tds from './Tds';
 import Profile from './Profile';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon4 from 'react-native-vector-icons/MaterialIcons'
+
 
 
 
@@ -22,18 +28,19 @@ import Profile from './Profile';
 const HomeScreen = () => {
 
   const Drawer = createDrawerNavigator();
-   
+  const Tab = createBottomTabNavigator();
 
   
 
   return (
     <> 
+     
     <Drawer.Navigator
   
     screenOptions={{
       headerShown:'false',
       drawerActiveBackgroundColor: 'grey',
-      drawerActiveTintColor:"blue",
+      drawerActiveTintColor:"#8DD2EA",
       drawerInactiveTintColor:"black",
       inactiveBackgroundColor: 'transparent',
       activeTintColor: 'red',
@@ -72,33 +79,36 @@ const HomeScreen = () => {
      component={Dashboard} 
       options={{
         drawerLabelStyle:{
-          fontSize:20
+          fontSize:17,
+          fontFamily: 'Roboto-Medium'
         },
        
         drawerIcon: ({color}) => (
           
-          <Icon name="home" size={25} color= {color}/>
+          <Icon name="home" size={20} color= {color}/>
         ),
        
       }} /> 
      <Drawer.Screen name="Invoice Management" component={InvoiceMangement}  
      options={{   
       drawerLabelStyle:{
-        fontSize: 20
+        fontSize: 17,
+        fontFamily: 'Roboto-Medium'
       } ,  
       drawerIcon: () => (
-        <Icon name="archive" size={25} color="black" />
+        <Icon1 name="archive" size={20} color="black" />
       ),
     }} /> 
 
     <Drawer.Screen name="Wallet Management" component={WalletScreen}  
     options={{
       drawerLabelStyle:{
-        fontSize:20
+        fontSize:17,
+        fontFamily: 'Roboto-Medium'
       },
       drawerIcon: () => (
-        <Icon name="book" 
-        size={25}
+        <Icon2 name="wallet" 
+        size={20}
         color="black"
          />
       )
@@ -106,11 +116,12 @@ const HomeScreen = () => {
      <Drawer.Screen name="My Funding" component={Funding}  
     options={{
       drawerLabelStyle:{
-        fontSize:20
+        fontSize:17,
+        fontFamily: 'Roboto-Medium'
       },
       drawerIcon: () => (
-        <Icon name="calendar" 
-        size={25}
+        <Icon2 name="credit-card-refund-outline" 
+        size={20}
         color='black'
          />
       )
@@ -118,11 +129,12 @@ const HomeScreen = () => {
 
 <Drawer.Screen name="My Settlement" component={Settlement}  options={{
   drawerLabelStyle:{
-    fontSize:20
+    fontSize:17,
+    fontFamily: 'Roboto-Medium'
   },
       drawerIcon: () => (
-        <Icon name="book" 
-        size={25}   
+        <Icon2 name="set-center" 
+        size={20}   
         color='black'       
          />
       )
@@ -130,11 +142,12 @@ const HomeScreen = () => {
 
 <Drawer.Screen name="My TDS History" component={Tds}  options={{
   drawerLabelStyle:{
-    fontSize:20
+    fontSize:17,
+    fontFamily: 'Roboto-Medium'
   },
       drawerIcon: () => (
-        <Icon name="archive" 
-        size={25}  
+        <Icon2 name="history" 
+        size={20}  
         color='black'        
          />
       )
@@ -143,11 +156,12 @@ const HomeScreen = () => {
     <Drawer.Screen name="Notification" component={Notification}  
     options={{
       drawerLabelStyle:{
-        fontSize:20
+        fontSize:17,
+        fontFamily: 'Roboto-Medium'
       },
       drawerIcon: () => (
-        <Icon name="bell" 
-        size={25}
+        <Icon4 name="notifications-on" 
+        size={20}
         color='black'
          />                
       )
@@ -155,11 +169,12 @@ const HomeScreen = () => {
      <Drawer.Screen name="Help" component={Help} 
       options={{
         drawerLabelStyle:{
-          fontSize:20
+          fontSize:17,
+          fontFamily: 'Roboto-Medium'
         },
         drawerIcon: () => (
-          <><Icon name="rocket"
-            size={25}
+          <><Icon3 name="help-circle"
+            size={20}
             color='black' />
          </>
         )
@@ -170,11 +185,12 @@ const HomeScreen = () => {
        <Drawer.Screen name="Profile" component={Profile} 
       options={{
         drawerLabelStyle:{
-          fontSize:20
+          fontSize:17,
+          fontFamily: 'Roboto-Medium'
         },
         drawerIcon: () => (
-          <Icon name="camera" 
-          size={25}
+          <Icon4 name="camera" 
+          size={20}
           color='black'
          
            />

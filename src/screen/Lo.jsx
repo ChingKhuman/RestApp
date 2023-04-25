@@ -48,18 +48,18 @@ const Lo = ({ navigation }) => {
           Stay Connect With Our Opportunity
         </Text>
         <Text style={styles.text}> Sign in With Account</Text>
-       
-       
+
+
         <View style={styles.button}>
-        <TouchableOpacity  onPress={() => navigation.navigate('Login')}>
-         <LinearGradient colors={['#5db8fe', '#39cff2']}
-    style={styles.singIn}>
-          <Text style={styles.textSign}> Get Started</Text>
-          <MaterialIcons name='navigate-next' color='white' size={20}/>
-          </LinearGradient>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <LinearGradient colors={['#5db8fe', '#39cff2']}
+              style={styles.singIn}>
+              <Text style={styles.textSign}> Get Started</Text>
+              <MaterialIcons name='navigate-next' color='white' size={20} />
+            </LinearGradient>
           </TouchableOpacity>
         </View>
-       
+
 
       </Animatable.View>
     </View>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   logo: {
     width: height_logo,
     height: height_logo,
-    borderRadius: 100/1
+    borderRadius: 100 / 1
 
   },
   title: {

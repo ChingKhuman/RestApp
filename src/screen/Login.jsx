@@ -30,7 +30,7 @@ export default function Login({ navigation }) {
             color='#05375a'
             size={20}
             style={styles.font} />
-          <TextInput placeholder='Enter   Email'
+          <TextInput placeholder='Enter Email'
             style={styles.textInput} 
             value={userEmail} 
             onChangeText={text => setUserEmail(text)}/>
@@ -44,7 +44,7 @@ export default function Login({ navigation }) {
             color='#05375a'
             size={20}
             style={styles.font} />
-          <TextInput placeholder='Enter   Password'
+          <TextInput placeholder='Enter Password'
           value={userPasswd}
             style={styles.textInput} 
             onChangeText={text => setUserPasswd(text)}

@@ -19,7 +19,7 @@ import {
 } from '@react-navigation/drawer';
 import { AuthContext } from '../context/AuthContext';
 import { COLORS, SIZES } from '../constants/theme';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/AntDesign'
 import { TouchableOpacity } from 'react-native';
 
 
@@ -40,20 +40,22 @@ const CustomSidebarMenu = (props) => {
     
             
       <DrawerContentScrollView {...props} >
-        {/* <ImageBackground  source={require('../../assets/BlueTheme.jpg')}> */}
+        <ImageBackground  source={require('../../assets/BlueTheme.jpg')}>
         <Image style={styles.sideMenuProfileIcon} source={require('../../assets/platform.png')} />
        
-        {/* </ImageBackground> */}
+        </ImageBackground>
         <DrawerItemList {...props}
          />
-
+  
 
       </DrawerContentScrollView>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-      <Icon name='rocket-outline'  size={20}             
+      <View style={{flexDirection: 'row', alignItems: 'center', padding: 10, paddingHorizontal: 18,
+    borderTopWidth:1, borderColor: 'grey'}}>
+      <Icon name='logout'  size={20}             
                />
                <TouchableOpacity onPress={() => setModalVisible(true)}>
-               <Text style={{fontSize: 20,color: 'black', fontFamily: 'Roboto-Medium', marginLeft: 5,fontWeight:'bold'}}>
+               <Text style={{fontSize: 17,color: 'black', fontFamily: 'Roboto-Medium', 
+               marginLeft: 5,fontWeight:'bold', paddingHorizontal: 20}}>
                 Logout
                </Text>
                </TouchableOpacity>

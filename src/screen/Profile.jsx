@@ -174,9 +174,7 @@ const Profile = () => {
 }
 
 const styles = StyleSheet.create({
-    text1: {
-        fontFamily: FONTWIEGHT.bold
-    },
+  
     view1: {
         padding: 10,
         flexDirection: 'column',
