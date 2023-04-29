@@ -9,30 +9,35 @@ import {
   Modal,
   Pressable,
   ImageBackground,
-
+  TouchableOpacity
 } from 'react-native';
 
 import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
+  createDrawerNavigator,
 } from '@react-navigation/drawer';
 import { AuthContext } from '../context/AuthContext';
 import { COLORS, SIZES } from '../constants/theme';
 import Icon from 'react-native-vector-icons/AntDesign'
-import { TouchableOpacity } from 'react-native';
+import Icon1 from 'react-native-vector-icons/Entypo'
+import IconHome from 'react-native-vector-icons/FontAwesome'
+import Icon4 from 'react-native-vector-icons/MaterialIcons'
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon3 from 'react-native-vector-icons/Feather'
 
 
 
 
 
-const CustomSidebarMenu = (props) => {
+
+const CustomSidebarMenu = (props,{navigation}) => {
 
   const {logout} = React.useContext(AuthContext) 
   const [modalVisible, setModalVisible] = React.useState(false);
+ 
 
-  
-  
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -44,18 +49,80 @@ const CustomSidebarMenu = (props) => {
         <Image style={styles.sideMenuProfileIcon} source={require('../../assets/platform.png')} />
        
         </ImageBackground>
+     
         <DrawerItemList {...props}
          />
+     
+       
+        
   
 
       </DrawerContentScrollView>
-      <View style={{flexDirection: 'row', alignItems: 'center', padding: 10, paddingHorizontal: 18,
-    borderTopWidth:1, borderColor: 'grey'}}>
+      <View style={{paddingBottom: '50%'}}>
+      <TouchableOpacity onPress={() => navigation.navigate('Invoice')}>
+      <View style={styles.iconAlign}>
+      <Icon1 name="archive" size={20} color= 'black'/>  
+       
+        <Text style={styles.DrawerText}>Invoice Management</Text>
+       
+            
+      </View>
+      </TouchableOpacity>
+      <View style={styles.iconAlign}>
+      <Icon2 name="wallet" size={20} color= 'black'/> 
+        <TouchableOpacity>
+        <Text style={styles.DrawerText}>Wallet</Text>
+        </TouchableOpacity>
+             
+      </View>
+      <View style={styles.iconAlign}>
+      <Icon2 name="credit-card-refund-outline" size={20} color= 'black'/> 
+        <TouchableOpacity>
+        <Text style={styles.DrawerText}>Funding</Text>
+        </TouchableOpacity>
+             
+      </View>
+      <View style={styles.iconAlign}>
+      <Icon2 name="set-center" size={20} color= 'black'/> 
+        <TouchableOpacity>
+        <Text style={styles.DrawerText}>Settlement</Text>
+        </TouchableOpacity>
+             
+      </View>
+      <View style={styles.iconAlign}>
+      <Icon2 name="history" size={20} color= 'black'/> 
+        <TouchableOpacity>
+        <Text style={styles.DrawerText}>History</Text>
+        </TouchableOpacity>
+             
+      </View>
+      <View style={styles.iconAlign}>
+      <Icon4 name="notifications-on" size={20} color= 'black'/>
+        <TouchableOpacity>
+        <Text style={styles.DrawerText}>Notification</Text>
+        </TouchableOpacity>
+              
+      </View>
+      <View style={styles.iconAlign}>
+      <Icon3 name="help-circle" size={20} color= 'black'/>  
+        <TouchableOpacity>
+        <Text style={styles.DrawerText}>Help</Text>
+        </TouchableOpacity>
+             
+      </View>
+      <View style={styles.iconAlign}>
+      <Icon4 name="camera" size={20} color= 'black'/>  
+        <TouchableOpacity>
+        <Text style={styles.DrawerText}>Profile</Text>
+        </TouchableOpacity>
+             
+      </View>
+      </View>
+      <View style={styles.iconAlign}>
       <Icon name='logout'  size={20}             
                />
                <TouchableOpacity onPress={() => setModalVisible(true)}>
-               <Text style={{fontSize: 17,color: 'black', fontFamily: 'Roboto-Medium', 
-               marginLeft: 5,fontWeight:'bold', paddingHorizontal: 20}}>
+               <Text style={styles.DrawerText}>
                 Logout
                </Text>
                </TouchableOpacity>
@@ -173,9 +240,12 @@ const styles = StyleSheet.create({
  display: 'flex',
  justifyContent: 'space-between'
   },
-  btn: {
-    
-  }
-});
+ iconAlign: {flexDirection: 'row', alignItems: 'center', padding: 10,
+ paddingHorizontal: 18,
+borderTopWidth:1, borderColor: 'grey'}
+,
+  	DrawerText: {fontSize: 17,color: 'black', fontFamily: 'Roboto-Medium', 
+    marginLeft: 5,fontWeight:'bold', paddingHorizontal: 20}
+})
 
 export default CustomSidebarMenu;

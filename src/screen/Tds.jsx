@@ -117,10 +117,10 @@ const Tds = () => {
                   <Card.Content>
                   {/* <IconAnt name="wallet" size={50} color= 'green' /> */}
                  
-                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>Invoice: {item.invoiceRefID}</Text>
-                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>Counter{item.counterParty}</Text>
-                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>Amount{item.transactionAmount}</Text>
-                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>Date: {item.transactionDate}</Text>
+                    <Text style={styles.text1}>Invoice: {item.invoiceRefID}</Text>
+                    <Text style={styles.text1}>Counter{item.counterParty}</Text>
+                    <Text style={styles.text1}>Amount{item.transactionAmount}</Text>
+                    <Text style={styles.text1}>Date: {item.transactionDate}</Text>
                   </Card.Content>
                 </Card>
                 </View>
@@ -193,7 +193,8 @@ const styles = StyleSheet.create({
   loaderStyle: {
     marginVertical: 16,
     alignItems: 'center'
-  }
+  },
+  text1: {fontSize: 20, color: 'black'}
 
 
 });

@@ -8,11 +8,15 @@ import { AuthContext } from '../context/AuthContext';
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import PieChart from 'react-native-pie-chart';
 import Icon from 'react-native-vector-icons/MaterialIcons'
-
 import { Card } from 'react-native-paper';
 import Icon1 from 'react-native-vector-icons/FontAwesome5'
 import IconAnt from 'react-native-vector-icons/AntDesign'
 import IconTransaction from 'react-native-vector-icons/MaterialCommunityIcons'
+import Pie from 'react-native-pie'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useState } from 'react';
+
+
 
 // import PieChart from 'react-native-chart-kit';
 // import { BarChart, PieChart } from "react-native-gifted-charts";
@@ -21,6 +25,7 @@ import IconTransaction from 'react-native-vector-icons/MaterialCommunityIcons'
 const Dashboard = ({ navigation }) => {
 
 
+ 
   const [pieCount, setPieCount] = React.useState([0, 0, 0, 0]);
   const [pieAmount, setPieAmount] = React.useState([0, 0, 0, 0])
   const [yieVal, setYieVal] = React.useState('')
@@ -28,7 +33,12 @@ const Dashboard = ({ navigation }) => {
   const [refreshing, setRefreshing] = React.useState(false);
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
+  const [red, setRed] = useState("")
+  const [green, setGreen] = useState("")
+  const [white, setWite] = useState("")
+  const [blue, setBlue] = useState("")
 
+ 
 
 
   const screenWidth = Dimensions.get('window').width;
@@ -36,7 +46,7 @@ const Dashboard = ({ navigation }) => {
   const { userInfo } = React.useContext(AuthContext);
   // // console.log(userInfo)
   const token = userInfo.data?.accessToken;
-  console.log('token....', token);
+  // console.log('token....', token);
 
   var myHeaders = new Headers();
   myHeaders.append("Authorization", token);
@@ -59,7 +69,7 @@ const Dashboard = ({ navigation }) => {
       }).
       then(function (myJson) {
         let cont = myJson?.data.count;
-        //  console.log('check the data...', cont)
+          // console.log('check the data...', cont)
         setPieCount(cont);
         setLaoding(false)
 
@@ -80,7 +90,8 @@ const Dashboard = ({ navigation }) => {
       }).
       then(function (myJson) {
         let cont = myJson?.data.amount;
-        //  console.log('check the data...', cont)
+          // console.log('check the data...', cont)
+        
         setPieAmount(cont);
 
       }).catch(function (error) {
@@ -122,24 +133,34 @@ const Dashboard = ({ navigation }) => {
 
 
   const widthAndHeight = 200
-  const series1 = pieCount.map((item, index1) => <><View style={{ flexDirection: 'row' }} key={index1}>
-    <Text key={index1}>{item.allOfferCount}</Text>
-  </View>
-  </>)
-  const series = Object.keys(series1);
-  const sliceColor = ['red', 'blue', 'green', '#92CDE2']
+  const series1 = pieCount.map(item =>
+   item.allOfferCount  
+)
+// var countArray =[];
+// length = series1.length;
+// for(var i = 0; i < length; i++)
+// countArray.push(parseInt(series1[i]));
+// var countArray = series1.map(Number)
 
-
-
-
+ var countArray = [];
+series1.forEach( ele => countArray.push(+ele))
+console.log(countArray)
+ 
+  const sliceColor = ['green', 'blue', 'white', '#92CDE2']
 
   const widthAndHeight1 = 180
-  const SeriesA = pieAmount.map((i, index) => <View style={{ flexDirection: 'row' }} key={index}>
-    <Text key={index}>{i.totalOfferedAmount}</Text>
-  </View>)
-  const seriesA = Object.keys(SeriesA)
-  const sliceColor1 = ['red', 'blue', 'green', '#2C5AA2']
+  const SeriesA = pieAmount.map(i =>
+    i.totalOfferedAmount
+  )
+  var numberArray = SeriesA.map(Number);
+  // console.log(numberArray)
 
+  // var numberArray = [];
+  // length = SeriesA.length;
+  // for (var i = 0; i < length; i++)
+  // numberArray.push(parseInt(SeriesA[i]));
+  
+  const sliceColor1 = ['red', 'blue', 'green', '#2C5AA2']
 
   return (
 
@@ -153,11 +174,11 @@ const Dashboard = ({ navigation }) => {
           <View>
             <View>
 
-              <View style={{ flexDirection: 'row', padding: 10, }}>
+              <View style={{ flexDirection: 'row', padding: 10,justifyContent:'space-between' }}>
                 <Text style={styles.Text1}>Home/ </Text>
-                <Text style={{ color: 'white', fontSize: 20 }}>Dashboard</Text>
+                <Text style={{ color: 'white', fontSize: 20 }}></Text>
 
-                <View style={{ justifyContent: 'flex-end', paddingLeft: 160 }}>
+                <View style={{ justifyContent: 'flex-end', paddingRight:20}}>
                   <Icon name="notifications-on" size={20} color='orange' />
                 </View>
 
@@ -171,12 +192,13 @@ const Dashboard = ({ navigation }) => {
                 <View style={{ flexDirection: 'row', width: windowWidth, justifyContent: 'center' }}>
                   {pieCount.map((item, index) => (
                     <>
-
+ <ScrollView horizontal={true}>
                       <View style={styles.View8} key={index} >
+                    
                         <Text style={styles.Text5}>{item.name}: </Text>
                         <Text style={styles.Text7}>  {item.allOfferCount}</Text>
                       </View>
-
+                      </ScrollView>
                     </>
                   ))}
 
@@ -187,13 +209,20 @@ const Dashboard = ({ navigation }) => {
                 </View>
                 <View style={styles.View10}>
 
-                  <PieChart
+                  {/* <PieChart
                     widthAndHeight={widthAndHeight}
-                    series={series}
+                    series={countArray}
                     sliceColor={sliceColor}
                     doughnut={false}
                     coverRadius={0.45}
-                    coverFill={'#FFF'} />
+                    coverFill={'#FFF'} /> */}
+                    {/* <Pie
+  radius={70}
+  //completly filled pie chart with radius 70
+  series={[10, 20, 30, 40]}
+  //values to show and color sequentially
+  colors={['#f00', '#0f0', '#00f', '#ff0']}
+/> */}
 
 
 
@@ -284,15 +313,15 @@ const Dashboard = ({ navigation }) => {
               <><View style={styles.View13}>
 
 
-                <PieChart
+               {/* <PieChart
                   widthAndHeight={widthAndHeight1}
-                  series={seriesA}
+                  series={numberArray}
                   sliceColor={sliceColor1}
                   doughnut={true}
                   coverRadius={0.45}
-                  coverFill={'#FFF'} /></View></>
+                  coverFill={'#FFF'} />  */}
 
-
+</View></>
 
               {pieAmount.map((item, index) =>
 

@@ -15,6 +15,37 @@ export default function Login({ navigation }) {
   const [userEmail, setUserEmail] = useState('');
   const [userPasswd, setUserPasswd] = useState('');
   const { loading, login } = useContext(AuthContext)
+  const [seePassword, setSeePassword] = useState(true);
+  const [checkValidEmail, setCheckValidEmail] = useState(false);
+
+  const handleCheckEmail = text => {
+    let re = /\S+@\S+\.\S+/;
+    let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
+    setUserEmail(text);
+    if (re.test(text) || regex.test(text)) {
+      setCheckValidEmail(false);
+    } else {
+      setCheckValidEmail(true);
+    }
+  };
+
+  const checkPasswordValidity = value => {
+    const isNonWhiteSpace = /^\S*$/;
+    if (!isNonWhiteSpace.test(value)) {
+      return 'Password must not contain Whitespaces.';
+    }
+    const isContainsNumber = /^(?=.*[0-9]).*$/;
+    if (!isContainsNumber.test(value)) {
+      return 'Password must contain at least one Digit.';
+    }
+
+    const isValidLength = /^.{8,16}$/;
+    if (!isValidLength.test(value)) {
+      return 'Password must be 8-16 Characters Long.';
+    }
+    return null;
+  }
   
   return (
     <View style={styles.container}>
@@ -33,10 +64,15 @@ export default function Login({ navigation }) {
           <TextInput placeholder='Enter Email'
             style={styles.textInput} 
             value={userEmail} 
-            onChangeText={text => setUserEmail(text)}/>
+            onChangeText={text => (setUserEmail, handleCheckEmail)(text)}/>
           <Feather name='check-circle' color='green' size={20} 
           style={styles.font}/>
         </View>
+        {checkValidEmail ? (
+          <Text style={{color: 'red'}}> Wrong Format email</Text>
+        ): (
+          <Text style={styles.textFailed}></Text>
+        )}
         <Text style={[styles.text_footer, { marginTop: 35 }]}>Password</Text>
         <View style={styles.action}>
           <Feather
@@ -214,7 +250,11 @@ const styles = StyleSheet.create({
   font: {
     paddingTop: 10,
     paddingRight: 10
-  }
+  },
+  textFailed: {
+    alignSelf: 'flex-end',
+    color: 'red',
+  },
 
 
 });

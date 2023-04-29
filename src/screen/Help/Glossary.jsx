@@ -6,6 +6,8 @@ import { SIZES } from "../../constants/theme";
 import { AuthContext } from "../../context/AuthContext";
 import { StyleSheet } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
+import { SafeAreaView } from "react-native";
+import { SectionList } from "react-native";
 
 
 
@@ -16,7 +18,7 @@ const Glossary = () => {
 
     const [loading, setLoading] = useState(false)
     const [glossary, setGlosary] = useState([])
-    const [glossary1, setGlosary1] = useState([])
+     const [glossary1, setGlosary1] = useState([])
     const { userInfo } = useContext(AuthContext);
    
 
@@ -70,35 +72,35 @@ const Glossary = () => {
         getData()
     }, [])
 
-    const getData1 = () => {
-        setLoading(true)
-        fetch(`${BASE_URL}/account/glossary`, requestOptions)
-            .then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Something went wrong.')
+    // const getData1 = () => {
+    //     setLoading(true)
+    //     fetch(`${BASE_URL}/account/glossary`, requestOptions)
+    //         .then(function (response) {
+    //             if (response.ok) {
+    //                 return response.json();
+    //             }
+    //             throw new Error('Something went wrong.')
 
-            }).
-            then(function (myJson) {
-                let result = myJson.data[0].sectionData
-                setGlosary1(result)
-                 console.log('check2...result..', result)
-                setLoading(false)
+    //         }).
+    //         then(function (myJson) {
+    //             let result = myJson.data[0].sectionData
+    //             setGlosary1(result)
+    //              console.log('check2...result..', result)
+    //             setLoading(false)
 
-            })
-            .catch(function (error) {
-                console.warn('Request failed', error)
-                setLoading(false)
-            })
+    //         })
+    //         .catch(function (error) {
+    //             console.warn('Request failed', error)
+    //             setLoading(false)
+    //         })
 
-    }
+    // }
 
     
 
-    useEffect(() => {
-        getData1()
-    }, [])
+    // useEffect(() => {
+    //     getData1()
+    // }, [])
 
 
    
@@ -106,7 +108,7 @@ const Glossary = () => {
 
     return (
         <ScrollView>
-            <View 
+            <SafeAreaView 
             >
            
                 <View>
@@ -121,10 +123,18 @@ const Glossary = () => {
                     <View style={{ justifyContent: 'space-between', paddingHorizontal: 10}}>
                     <Spinner visible={loading} />
 
-                    {/* <FlatList
-                    data={glossary}
-                    renderItem={({item}) =>
-                    <Text>{item.section}</Text>}/> */}
+                    {/* <SectionList
+      sections={glossary1}
+      keyExtractor={(item, index) => item + index}
+      renderItem={({item}) => (
+        <View style={styles.item}>
+          <Text style={styles.title}>{item}</Text>
+        </View>
+      )}
+      renderSectionHeader={({section: {section}}) => (
+        <Text style={styles.header}>{section}</Text>
+      )}
+    /> */}
 
                 
                         {glossary.map(({ section, sectionData }, i) => {
@@ -165,7 +175,7 @@ const Glossary = () => {
                         })}
                     </View>
                 </View>
-            </View>
+            </SafeAreaView>
         </ScrollView>
     )
 }
@@ -194,7 +204,17 @@ const styles = StyleSheet.create({
         fontWeight: '900',
         alignItems: 'center',
         justifyContent: 'center',
-        color: 'blue'
-
-    }
+        color: 'blue'    },
+        item: {
+            backgroundColor: '#f9c2ff',
+            padding: 20,
+            marginVertical: 8,
+          },
+          header: {
+            fontSize: 32,
+            backgroundColor: '#fff',
+          },
+          title: {
+            fontSize: 24,
+          },
 })
