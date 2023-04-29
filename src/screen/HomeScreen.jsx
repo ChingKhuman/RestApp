@@ -37,41 +37,13 @@ const HomeScreen = () => {
      
     <Drawer.Navigator
   
-    screenOptions={{
-      headerShown:'false',
-      drawerActiveBackgroundColor: 'grey',
-      drawerActiveTintColor:"#8DD2EA",
-      drawerInactiveTintColor:"black",
-      inactiveBackgroundColor: 'transparent',
-      activeTintColor: 'red',
-      labelStyle: {
-        fontSize: 30,
-        marginLeft: 10,
-      },
-      drawerStyle: {
-        // backgroundColor: '#667EB8',
-        borderWidth: 1,
-      borderColor: 'orange'
-        
-      },
-      itemStyle: {marginVertical: 5,
-        borderWidth: 1,
-            borderColor: 'white',
-            
-          },
-      
-      // headerStyle: {
-      //   backgroundColor: 'green', //Set Header color
-      // },
-      // headerTintColor: 'white', //Set Header text color
-      // headerTitleStyle: {
-      //   fontWeight: 'bold', //Set Header text style
-      // },
-    }}
+  screenOptions={{
+    activeTintColor: '#e91e63',
+    itemStyle: {marginVertical: 5},
+  }}
     drawerContent={props => <CustomSidebarMenu {...props}
     labelStyle={{fontFamily: 'sans-serif', fontsize:40}}
      />}>
-
 
             
       
@@ -89,7 +61,7 @@ const HomeScreen = () => {
         ),
        
       }} /> 
-     <Drawer.Screen name="Invoice Management" component={InvoiceMangement}  
+     {/* <Drawer.Screen name="Invoice Management" component={InvoiceMangement}  
      options={{   
       drawerLabelStyle:{
         fontSize: 17,
@@ -178,8 +150,8 @@ const HomeScreen = () => {
             color='black' />
          </>
         )
-      
       }}
+      
       />
       
        <Drawer.Screen name="Profile" component={Profile} 
@@ -195,7 +167,7 @@ const HomeScreen = () => {
          
            />
         )
-      }} />   
+      }} />    */}
      </Drawer.Navigator>
       </>
      );

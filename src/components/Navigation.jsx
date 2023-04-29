@@ -13,6 +13,7 @@ import Investor from '../screen/Register/Investor';
 import Vendor from '../screen/Register/Vendor';
 import Enterprise from '../screen/Register/Enterprise';
 import InstituteInvestor from '../screen/Register/InstituteInvestor';
+import InvoiceMangement from '../screen/InvoiceManagement';
 
 
 
@@ -35,7 +36,9 @@ const Navigation = () => {
         <>                 
                                
                  <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerShown: false}}/>                 
-                 </>  
+                
+                 <Stack.Screen name='Invoice' component={InvoiceMangement} options={{headerShown: false}}/>                 
+                </>  
                  
         ):(
              <>

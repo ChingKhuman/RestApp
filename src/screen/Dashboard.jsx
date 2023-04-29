@@ -209,13 +209,13 @@ console.log(countArray)
                 </View>
                 <View style={styles.View10}>
 
-                  <PieChart
+                  {/* <PieChart
                     widthAndHeight={widthAndHeight}
                     series={countArray}
                     sliceColor={sliceColor}
                     doughnut={false}
                     coverRadius={0.45}
-                    coverFill={'#FFF'} />
+                    coverFill={'#FFF'} /> */}
                     {/* <Pie
   radius={70}
   //completly filled pie chart with radius 70
@@ -313,13 +313,13 @@ console.log(countArray)
               <><View style={styles.View13}>
 
 
-               <PieChart
+               {/* <PieChart
                   widthAndHeight={widthAndHeight1}
                   series={numberArray}
                   sliceColor={sliceColor1}
                   doughnut={true}
                   coverRadius={0.45}
-                  coverFill={'#FFF'} /> 
+                  coverFill={'#FFF'} />  */}
 
 </View></>
 
