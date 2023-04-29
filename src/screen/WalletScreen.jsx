@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { View, Text, Button, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-  
+import { View, Text, Button, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';  
 import { BASE_URL } from '../constants/Config';
 import { COLORS, FONTWIEGHT, SIZES } from '../constants/theme';
 import { AuthContext } from '../context/AuthContext';
-
+import Icon4 from 'react-native-vector-icons/MaterialCommunityIcons'
 import Spinner from "react-native-loading-spinner-overlay/lib";
+import Icon1 from 'react-native-vector-icons/MaterialIcons'
 
 
 
@@ -57,13 +57,23 @@ const WalletScreen = ({ navigation }) => {
     return (
         <>
             <ScrollView>
-            <View style={{ flexDirection: 'row', paddingVertical: 15 }}>
-    <Text style={styles.Text0}>Home/ </Text>
-    <Text>Wallet</Text>
- 
+                <View style={{flexDirection:'row', justifyContent:'space-between',paddingHorizontal:25, paddingVertical: 15  }}>
+            <View style={{ flexDirection: 'row'}}>
+    {/* <Text style={styles.Text0}>Home/ </Text> */}
+    <Icon4 name="wallet" 
+        size={20}
+        color='black'
+         /> 
+    <Text style={styles.Text0}>Wallet</Text>
+  </View>
+
+<Icon1 name="notifications-on" 
+        size={25}
+        color='orange'
+         /> 
+         {/* <Text style={{borderWidth:1, borderRadius:50, borderColor: 'red'}}>0</Text> */}
 
   </View>
-  
             <Spinner visible={loading}/>
                 <View style={styles.View1}>
                     <View style={styles.View2}>

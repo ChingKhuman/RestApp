@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 8
   },
-  text1: {fontSize: 20, fontWeight: 'bold',fontFamily: 'Roboto-Medium'}
+  text1: {fontSize: 20, color: 'black',fontFamily: 'Roboto-Medium'}
  
 });
 

@@ -21,6 +21,8 @@ import { AuthContext } from '../context/AuthContext';
 import { COLORS, SIZES } from '../constants/theme';
 import Icon from 'react-native-vector-icons/AntDesign'
 import { TouchableOpacity } from 'react-native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 
 
@@ -31,7 +33,12 @@ const CustomSidebarMenu = (props) => {
   const {logout} = React.useContext(AuthContext) 
   const [modalVisible, setModalVisible] = React.useState(false);
 
-  
+  const handleLogout = () => {
+    AsyncStorage.clear();
+    // navigation.navigte('LoginScreen')
+   
+  };
+
   
 
   return (

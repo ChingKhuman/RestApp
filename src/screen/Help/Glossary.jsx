@@ -16,7 +16,7 @@ const Glossary = () => {
 
     const [loading, setLoading] = useState(false)
     const [glossary, setGlosary] = useState([])
-    const [glossary1, setGlosary1] = useState([])
+    // const [glossary1, setGlosary1] = useState([])
     const { userInfo } = useContext(AuthContext);
    
 
@@ -70,35 +70,35 @@ const Glossary = () => {
         getData()
     }, [])
 
-    const getData1 = () => {
-        setLoading(true)
-        fetch(`${BASE_URL}/account/glossary`, requestOptions)
-            .then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Something went wrong.')
+    // const getData1 = () => {
+    //     setLoading(true)
+    //     fetch(`${BASE_URL}/account/glossary`, requestOptions)
+    //         .then(function (response) {
+    //             if (response.ok) {
+    //                 return response.json();
+    //             }
+    //             throw new Error('Something went wrong.')
 
-            }).
-            then(function (myJson) {
-                let result = myJson.data[0].sectionData
-                setGlosary1(result)
-                 console.log('check2...result..', result)
-                setLoading(false)
+    //         }).
+    //         then(function (myJson) {
+    //             let result = myJson.data[0].sectionData
+    //             setGlosary1(result)
+    //              console.log('check2...result..', result)
+    //             setLoading(false)
 
-            })
-            .catch(function (error) {
-                console.warn('Request failed', error)
-                setLoading(false)
-            })
+    //         })
+    //         .catch(function (error) {
+    //             console.warn('Request failed', error)
+    //             setLoading(false)
+    //         })
 
-    }
+    // }
 
     
 
-    useEffect(() => {
-        getData1()
-    }, [])
+    // useEffect(() => {
+    //     getData1()
+    // }, [])
 
 
    
@@ -120,11 +120,6 @@ const Glossary = () => {
                 <View>
                     <View style={{ justifyContent: 'space-between', paddingHorizontal: 10}}>
                     <Spinner visible={loading} />
-
-                    {/* <FlatList
-                    data={glossary}
-                    renderItem={({item}) =>
-                    <Text>{item.section}</Text>}/> */}
 
                 
                         {glossary.map(({ section, sectionData }, i) => {

@@ -9,6 +9,10 @@ import HomeScreen from '../screen/HomeScreen';
 import SplashScreen from '../screen/SplashScreen';
 import Login from '../screen/Login';
 import Lo from '../screen/Lo';
+import Investor from '../screen/Register/Investor';
+import Vendor from '../screen/Register/Vendor';
+import Enterprise from '../screen/Register/Enterprise';
+import InstituteInvestor from '../screen/Register/InstituteInvestor';
 
 
 
@@ -20,7 +24,7 @@ const Navigation = () => {
     const {userInfo, splashLoading} = useContext(AuthContext)
     
     return (
-       <NavigationContainer>      
+       <NavigationContainer>  
         <Stack.Navigator>         
         {
         splashLoading ? (
@@ -78,7 +82,8 @@ const Navigation = () => {
                            )} */}
 
 
-   </Stack.Navigator>
+   </Stack.Navigator>  
+   
         </NavigationContainer>
     )}
 
